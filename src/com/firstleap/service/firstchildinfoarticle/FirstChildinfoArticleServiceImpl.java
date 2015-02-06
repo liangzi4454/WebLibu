@@ -60,11 +60,9 @@ IFirstChildinfoArticleService {
 	}
 
 	
-	/* (non-Javadoc)
+	/**
 	 * 修改
-	 * @see net.ltak.service.childinfo.ILtakChildinfoService#updateChildinfo(net.ltak.entity.po.LtakChildinfo)
 	 */
-	
 	public boolean update(FirstChildinfoArticle firstChildinfoArticle) {
 		Timestamp dateTime = new Timestamp(new Date().getTime());
 		childinfoArticle = dao.get(firstChildinfoArticle.getId());//
