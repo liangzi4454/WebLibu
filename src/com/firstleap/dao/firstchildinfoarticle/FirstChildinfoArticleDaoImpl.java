@@ -22,7 +22,7 @@ public class FirstChildinfoArticleDaoImpl extends BaseDaoImpl<FirstChildinfoArti
 
 	/* (non-Javadoc)
 	 * @see net.bjstd.entity.system.commdatadict.dao.ICommdataDictDao#queryByPagination(int, int, java.lang.String)
-	 * 
+	 * zsc
 	 */
 	public Pagination queryByPagination(int pageNo, int pageSize, String aid) {
 		String hql = "from FirstChildinfoArticle where id='"+aid+"'";
