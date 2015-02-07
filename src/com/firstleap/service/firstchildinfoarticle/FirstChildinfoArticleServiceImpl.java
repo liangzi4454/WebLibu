@@ -36,11 +36,9 @@ IFirstChildinfoArticleService {
 
 	private FirstChildinfoArticle childinfoArticle;
 	
-	/* (non-Javadoc)
+	/**
 	 * 增加
-	 * @see net.ltak.service.childinfo.ILtakChildinfoService#saveChildinfo(net.ltak.entity.po.LtakChildinfo)
 	 */
-	
 	public boolean save(FirstChildinfoArticle firstChildinfoArticle,File file,String fileFileName ,String fileContentType) {
 		firstChildinfoArticle.setId(Tools.UUID());
 //		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
