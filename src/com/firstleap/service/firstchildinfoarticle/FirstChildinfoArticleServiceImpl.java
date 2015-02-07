@@ -159,33 +159,23 @@ IFirstChildinfoArticleService {
 		return dao;
 	}
 
-
 	public void setDao(IFirstChildinfoArticleDao dao) {
 		this.dao = dao;
 	}
-
 
 	public ContextPvd getContextPvdImpl() {
 		return contextPvdImpl;
 	}
 
-
 	public void setContextPvdImpl(ContextPvd contextPvdImpl) {
 		this.contextPvdImpl = contextPvdImpl;
 	}
-
 
 	public FirstChildinfoArticle getChildinfoArticle() {
 		return childinfoArticle;
 	}
 
-
 	public void setChildinfoArticle(FirstChildinfoArticle childinfoArticle) {
 		this.childinfoArticle = childinfoArticle;
 	}
-
-
-
-	
-	
 }
