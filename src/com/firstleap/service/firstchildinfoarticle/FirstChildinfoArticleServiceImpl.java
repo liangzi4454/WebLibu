@@ -75,7 +75,7 @@ IFirstChildinfoArticleService {
 	}
 
 	
-	/* (non-Javadoc)
+	/**
 	 * 根据ID查询
 	 * @see net.ltak.service.vaccintion.ILtakVaccintionService#getByid(java.lang.String)
 	 */
