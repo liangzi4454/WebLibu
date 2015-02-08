@@ -1,8 +1,6 @@
 package com.firstleap.service.firstchildinfotype;
 
 
-import java.sql.Timestamp;
-import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,8 +11,6 @@ import com.firstleap.common.pagination.Pagination;
 import com.firstleap.common.pagination.PaginationConstants;
 import com.firstleap.common.service.BaseServiceImpl;
 import com.firstleap.common.util.ContextPvd;
-import com.firstleap.common.util.EntityTool;
-import com.firstleap.common.util.Tools;
 import com.firstleap.dao.firstchildinfotype.IFirstChildinfoTypeDao;
 import com.firstleap.entity.po.FirstChildinfoType;
 
@@ -30,48 +26,6 @@ IFirstChildinfoTypeService {
 	private ContextPvd contextPvdImpl;
 
 	private FirstChildinfoType childinfoType;
-	
-	/* (non-Javadoc)
-	 * 增加
-	 * @see net.ltak.service.childinfo.ILtakChildinfoService#saveChildinfo(net.ltak.entity.po.LtakChildinfo)
-	 */
-	
-	public boolean save(FirstChildinfoType firstChildinfoType,String qubie) {
-		firstChildinfoType.setId(Tools.UUID());
-//		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-//		String da = sdf.format(new Date());
-		if(qubie.equals("1")){
-			firstChildinfoType.setLibuChildinfoType("1");
-		}
-		if(qubie.equals("2")){
-			firstChildinfoType.setLibuChildinfoType("2");
-		}
-		firstChildinfoType.setCreatedDate(new Date());
-		firstChildinfoType = dao.save(firstChildinfoType);
-		if(null == firstChildinfoType){
-			return false;
-		}
-		return true;
-	}
-
-	
-	/* (non-Javadoc)
-	 * 修改
-	 * @see net.ltak.service.childinfo.ILtakChildinfoService#updateChildinfo(net.ltak.entity.po.LtakChildinfo)
-	 */
-	
-	public boolean update(FirstChildinfoType firstChildinfoType) {
-		Timestamp dateTime = new Timestamp(new Date().getTime());
-		childinfoType = dao.get(firstChildinfoType.getId());//
-		EntityTool.copyWithOutNull(childinfoType,firstChildinfoType);  //
-		FirstChildinfoType retLtakChildinfo = (FirstChildinfoType) dao.update(childinfoType);
-		if(retLtakChildinfo != null) {
-			return true;
-		}
-			return false;
-	}
-
-	
 	/* (non-Javadoc)
 	 * 根据ID查询
 	 * @see net.ltak.service.vaccintion.ILtakVaccintionService#getByid(java.lang.String)
