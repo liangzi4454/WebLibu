@@ -4,33 +4,48 @@
 
 <hibernate-mapping>
     <class name="com.firstleap.entity.po.FirstPregnantType" table="LIBU_PREGNANT_TYPE">
+    	<comment>孕妇健康类别表</comment>
         <id name="id" type="java.lang.String">
             <column name="LIBU_ID" length="32" />
             <generator class="assigned" />
         </id>
-         <many-to-one name="firstType" lazy="false" class="com.firstleap.entity.po.FirstType" fetch="select">
-            <column name="TYPE_ID" length="32" />
-        </many-to-one>
+        <!-- <many-to-one name="firstType" lazy="false" class="com.firstleap.entity.po.FirstType" fetch="select">
+            <column name="TYPE_ID" length="32">
+            	<comment>类型</comment>
+            </column>
+        </many-to-one> -->
         <property name="name" type="java.lang.String">
-            <column name="LIBU_NAME" length="100" />
+            <column name="LIBU_NAME" length="100">
+            	<comment>名称</comment>
+            </column>
         </property>
         <property name="parentId" type="java.lang.String">
-            <column name="LIBU_PARENTID" length="100" />
+            <column name="LIBU_PARENTID" length="100" not-null="false">
+            	<comment>外键:父类型</comment>
+            </column>
         </property>
         <property name="libuPregnantType" type="java.lang.String">
             <column name="LIBU_PREGNANT_TYPE" length="100" />
         </property>
         <property name="isDelete" type="java.lang.String">
-            <column name="ISDELETE" length="10" />
+            <column name="ISDELETE" length="10">
+            	<comment>是否删除:0是1否</comment>
+            </column>
         </property>
         <property name="createdDate" type="java.util.Date">
-            <column name="CREATE_DATE" length="7" />
+            <column name="CREATE_DATE" length="7">
+            	<comment>创建日期</comment>
+            </column>
         </property>
         <property name="updatedDate" type="java.util.Date">
-            <column name="UPDATE_DATE" length="7" />
+            <column name="UPDATE_DATE" length="7">
+            	<comment>更新执日期</comment>
+            </column>
         </property>
         <property name="paixu" type="java.lang.Long">
-            <column name="LIBU_PAIXU" precision="22" scale="0" />
+            <column name="LIBU_PAIXU" precision="22" scale="0">
+            	<comment>排序</comment>
+            </column>
         </property>
     </class>
 </hibernate-mapping>

@@ -18,7 +18,7 @@ import com.firstleap.service.firstpregnantarticle.IFirstPregnantArticleService;
 import com.firstleap.service.firstpregnanttype.IFirstPregnantTypeService;
 import com.opensymphony.xwork2.ActionContext;
 
-@SuppressWarnings("serial")
+@SuppressWarnings("all")
 @Controller("FirstPregnantArticleAction")
 @Scope("prototype")
 public class FirstPregnantArticleAction extends BaseAction {
@@ -51,7 +51,6 @@ public class FirstPregnantArticleAction extends BaseAction {
 	 * @throws Exception
 	 *             孕妇大类分页查询
 	 */
-	@SuppressWarnings("unchecked")
 	@Action("list")
 	public String list() throws Exception {
 		ltakLoginPagin = firstPregnantArticleService.findAllOrQuery(
@@ -66,6 +65,8 @@ public class FirstPregnantArticleAction extends BaseAction {
 
 	}
 
+	
+	
 	public Pagination getLtakLoginPagin() {
 		return ltakLoginPagin;
 	}
@@ -180,5 +181,4 @@ public class FirstPregnantArticleAction extends BaseAction {
 	public void setTyList(List<FirstPregnantArticle> tyList) {
 		this.tyList = tyList;
 	}
-
 }

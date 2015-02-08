@@ -14,8 +14,7 @@
         	<result name="listi">/WEB-INF/firstleap/firstpregnanttypeto/firstpregnanttype.jsp</result>
         	<result name="createi">/WEB-INF/firstleap/firstpregnanttypeto/firstpregnanttypeSave.jsp</result>
         	<result name="savei" type="redirect">/pregnanttype/pregnanttype_listi.action</result>
+        	<result name="findCategory">/page/category.jsp</result>
         </action>
 	</package>
-	
 </struts>
-	

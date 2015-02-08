@@ -112,7 +112,7 @@
 		<!-- 设置事务属性 -->
 		<property name="transactionAttributes">
 			<props>
-				<prop key="get*">PROPAGATION_REQUIRED,readOnly</prop>
+				<!-- <prop key="get*">PROPAGATION_REQUIRED,readOnly</prop>
 				<prop key="find*">PROPAGATION_REQUIRED,readOnly</prop>
 				<prop key="load*">PROPAGATION_REQUIRED,readOnly</prop>
 				<prop key="save*">PROPAGATION_REQUIRED,-Exception</prop>
@@ -127,7 +127,7 @@
 				<prop key="create*">PROPAGATION_REQUIRED,-Exception</prop>
 				<prop key="init*">PROPAGATION_REQUIRED,-Exception</prop>
 				<prop key="*Init">PROPAGATION_REQUIRED,-Exception</prop>
-				<prop key="rollBack*">PROPAGATION_REQUIRED,-Exception</prop>
+				<prop key="rollBack*">PROPAGATION_REQUIRED,-Exception</prop> -->
 			</props>
 		</property>
 	</bean>
