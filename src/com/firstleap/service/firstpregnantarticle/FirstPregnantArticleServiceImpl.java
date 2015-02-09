@@ -2,6 +2,8 @@ package com.firstleap.service.firstpregnantarticle;
 
 import java.util.List;
 
+import net.sf.json.JSONArray;
+
 import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -64,12 +66,27 @@ public class FirstPregnantArticleServiceImpl extends BaseServiceImpl implements 
 		String hql = "from FirstPregnantArticle l where 1 = 1 ";
 		return firstPregnantArticleDao.findByListHql(hql, hosid);
 	}
-
-	@Override
-	public String findArticleCategory(String obj) {
-		obj = (StringUtils.isEmpty(obj)?CategoryConstant.FirstPregnantType.PREGNANT_TYPE_1:obj.trim());
-		String hql = "";
-		return null;
+	
+	public String findArticleCategoryList(int size, String id, String... ids) {
+		if(size==0) {
+			return "";
+		} else if(ids==null || ids.length==0) {//StringUtils.isEmpty(id) || ids.length==0
+			id = CategoryConstant.FirstPregnantType.PREGNANT_TYPE_1;
+			ids = new String[] {
+				CategoryConstant.FirstPregnantType.PREGNANT_TYPE_101,
+				CategoryConstant.FirstPregnantType.PREGNANT_TYPE_102,
+				CategoryConstant.FirstPregnantType.PREGNANT_TYPE_103,
+				CategoryConstant.FirstPregnantType.PREGNANT_TYPE_104
+			};
+		}
+		String aa = "";
+		for(String str: ids) {
+			aa += "'" + str + "',";
+		}
+		aa = aa.substring(0, aa.lastIndexOf(","));
+		String hql = "from FirstPregnantArticle f where 1=1 and f.pregnantId in ("+aa+") order by paixu asc, createdDate asc";
+		List<FirstPregnantArticle> list = firstPregnantArticleDao.findByListHql(hql);
+		return JSONArray.fromObject(list).toString();
 	}
 
 	/************************** 封装get set ***************************/

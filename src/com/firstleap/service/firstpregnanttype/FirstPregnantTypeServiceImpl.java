@@ -1,9 +1,7 @@
 package com.firstleap.service.firstpregnanttype;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import net.sf.json.JSONArray;
 
@@ -11,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.firstleap.common.constant.CategoryConstant;
 import com.firstleap.common.pagination.Pagination;
 import com.firstleap.common.pagination.PaginationConstants;
 import com.firstleap.common.service.BaseServiceImpl;
@@ -21,8 +20,7 @@ import com.firstleap.vo.FirstPregnantTypeVO;
 
 @Transactional
 @Service("FirstPregnantTypeServiceImpl")
-public class FirstPregnantTypeServiceImpl extends BaseServiceImpl implements
-		IFirstPregnantTypeService {
+public class FirstPregnantTypeServiceImpl extends BaseServiceImpl implements IFirstPregnantTypeService {
 
 	@Autowired
 	private IFirstPregnantTypeDao firstPregnantTypeDao;
@@ -92,7 +90,7 @@ public class FirstPregnantTypeServiceImpl extends BaseServiceImpl implements
 	 * @return Json
 	 */
 	public String findCategory() {
-		List<FirstPregnantType> list = firstPregnantTypeDao.findByListHql("from FirstPregnantType f where 1=1 and (f.parentId is null or f.parentId = '')  and f.isDelete=0 order by libuPregnantType asc, paixu asc, createdDate asc");
+		List<FirstPregnantType> list = firstPregnantTypeDao.findByListHql("from FirstPregnantType f where 1=1 and f.typeId='"+CategoryConstant.FirstType.PREGNANT_MOTHER_STYLE+"' and (f.parentId is null or f.parentId = '') order by libuPregnantType asc, paixu asc, createdDate asc");
 		List<FirstPregnantTypeVO> listVO = new ArrayList<FirstPregnantTypeVO>();
 		if(list!=null && !list.isEmpty()) {
 			for(FirstPregnantType type: list) {
@@ -100,7 +98,7 @@ public class FirstPregnantTypeServiceImpl extends BaseServiceImpl implements
 				vo.setId(type.getId());
 				vo.setName(type.getName());
 				vo.setType(type.getLibuPregnantType());
-				List<FirstPregnantType> list2 = firstPregnantTypeDao.findByListHql("from FirstPregnantType f where 1=1 and f.parentId is not null and f.parentId='"+type.getId()+"' and f.isDelete=0 order by libuPregnantType asc, paixu asc, createdDate asc");
+				List<FirstPregnantType> list2 = firstPregnantTypeDao.findByListHql("from FirstPregnantType f where 1=1 and f.typeId is null and f.parentId='"+type.getId()+"' order by paixu asc, createdDate asc");
 				for(FirstPregnantType type2: list2) {
 					FirstPregnantTypeVO vo1 = new FirstPregnantTypeVO();
 					vo1.setId(type2.getId());

@@ -16,6 +16,7 @@ public class FirstPregnantType implements java.io.Serializable {
 	private String libuPregnantType; // 类型--> 1：备孕、2：孕早、3：孕中、4：孕晚、5：分娩、6：月子。
 	@Deprecated
 	private FirstType firstType; // 分类表ID
+	private String typeId;
 	private String isDelete; // 是否删除
 	private Date createdDate; // 增加时间
 	private Date updatedDate; // 修改时间
@@ -90,5 +91,13 @@ public class FirstPregnantType implements java.io.Serializable {
 
 	public void setUpdatedDate(Date updatedDate) {
 		this.updatedDate = updatedDate;
+	}
+	
+	public String getTypeId() {
+		return typeId;
+	}
+
+	public void setTypeId(String typeId) {
+		this.typeId = typeId;
 	}
 }

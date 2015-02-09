@@ -1,9 +1,14 @@
 package com.firstleap.action.firstpregnantarticle;
 
 import java.io.File;
+import java.io.PrintWriter;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+import org.apache.struts2.ServletActionContext;
 import org.apache.struts2.convention.annotation.Action;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
@@ -64,8 +69,29 @@ public class FirstPregnantArticleAction extends BaseAction {
 		return INPUT;
 
 	}
-
 	
+	/**
+	 * 查询每个二级分类下给定数量在文章列表
+	 * @author LHY 2015-2-10 上午1:19:05
+	 * @return
+	 * @throws Exception
+	 */
+	@Action("findArticleCategoryList")
+	public String findArticleCategoryList() throws Exception {
+		try {
+			HttpServletRequest request = ServletActionContext.getRequest();
+			int size = Integer.valueOf(request.getParameter("size"));
+			String result = firstPregnantArticleService.findArticleCategoryList(size, null, null);
+			HttpServletResponse response =  ServletActionContext.getResponse();
+			response.setContentType("text/json;charset=UTF-8");
+			PrintWriter out = response.getWriter();
+			out.print(result);
+			out.close();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return null;
+	}
 	
 	public Pagination getLtakLoginPagin() {
 		return ltakLoginPagin;

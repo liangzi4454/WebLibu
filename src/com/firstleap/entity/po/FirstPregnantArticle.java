@@ -15,6 +15,7 @@ public class FirstPregnantArticle implements java.io.Serializable {
 	private String pregnantTitle; // 标题
 	private String pregnantAbstract; // 摘要
 	private String pregnantImage; // 图片
+	/** 关联父类 **/
 	private String pregnantId;
 	@Deprecated
 	private FirstPregnantType firstPregnantType; // 孕妇大类

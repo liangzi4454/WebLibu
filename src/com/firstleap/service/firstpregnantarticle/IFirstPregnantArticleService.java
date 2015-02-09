@@ -28,11 +28,14 @@ public interface IFirstPregnantArticleService extends BaseService {
 	/**
 	 * <p>
 	 * 	根据分类类型获取与之相关的文章列表;默认类型为1;
-	 *  详细分类请查询com.firstleap.common.constant.FirstPregnantType常量类
+	 *  详细分类请查询com.firstleap.common.constant.FirstPregnantType常量类.
+	 *  默认查询备孕分类下要所有二级分类在文章列表
 	 * </p>
-	 * @param obj
-	 * @return json对象
+	 * @param size 查询数量
+	 * @param id 父类型id 暂时没有用到
+	 * @param ids 父类型下子类型的id集合
+	 * @return json 对象
 	 * @see com.firstleap.common.constant.FirstPregnantType
 	 */
-	public String findArticleCategory(String obj);
+	public String findArticleCategoryList(int size, String id, String... ids);
 }

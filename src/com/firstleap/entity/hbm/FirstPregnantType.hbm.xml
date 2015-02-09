@@ -14,6 +14,11 @@
             	<comment>类型</comment>
             </column>
         </many-to-one> -->
+        <property name="typeId" type="java.lang.String">
+            <column name="TYPE_ID" length="32">
+            	<comment>类型</comment>
+            </column>
+        </property>
         <property name="name" type="java.lang.String">
             <column name="LIBU_NAME" length="100">
             	<comment>名称</comment>
