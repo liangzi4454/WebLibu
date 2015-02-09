@@ -2,23 +2,23 @@ package com.firstleap.service.firstpregnantarticle;
 
 import java.util.List;
 
-import org.apache.struts2.ServletActionContext;
+import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.firstleap.common.constant.CategoryConstant;
+import com.firstleap.common.constant.CategoryConstant.FirstPregnantType;
 import com.firstleap.common.pagination.Pagination;
 import com.firstleap.common.pagination.PaginationConstants;
 import com.firstleap.common.service.BaseServiceImpl;
 import com.firstleap.common.util.ContextPvd;
-import com.firstleap.common.util.DeleteFileUtil;
 import com.firstleap.dao.firstpregnantarticle.IFirstPregnantArticleDao;
 import com.firstleap.entity.po.FirstPregnantArticle;
 
 @Transactional
 @Service("FirstPregnantArticleServiceImpl")
-public class FirstPregnantArticleServiceImpl extends BaseServiceImpl implements
-		IFirstPregnantArticleService {
+public class FirstPregnantArticleServiceImpl extends BaseServiceImpl implements IFirstPregnantArticleService {
 
 	@Autowired
 	private IFirstPregnantArticleDao firstPregnantArticleDao;
@@ -28,14 +28,10 @@ public class FirstPregnantArticleServiceImpl extends BaseServiceImpl implements
 
 	private FirstPregnantArticle firstPregnantArticle;
 
-	/*
-	 * (non-Javadoc) 根据ID查询
-	 * 
-	 * @see
-	 * net.ltak.service.vaccintion.ILtakVaccintionService#getByid(java.lang.
-	 * String)
+	/**
+	 * 根据ID查询
+	 * @see net.ltak.service.vaccintion.ILtakVaccintionService#getByid(java.lang.String)
 	 */
-
 	public FirstPregnantArticle getByid(String id) {
 		if (null == id || id.trim().length() == 0) {
 			return null;
@@ -45,40 +41,35 @@ public class FirstPregnantArticleServiceImpl extends BaseServiceImpl implements
 		return firstPregnantArticle;
 	}
 
-	/*
-	 * (non-Javadoc) 分页
-	 * 
-	 * @see
-	 * net.ltak.service.childinfo.ILtakChildinfoService#findAllOrQueryAll(int,
-	 * net.ltak.entity.po.LtakChildinfo)
+	/**
+	 * 分页
+	 * @see net.ltak.service.childinfo.ILtakChildinfoService#findAllOrQueryAll(int, net.ltak.entity.po.LtakChildinfo)
 	 */
 
-	public Pagination findAllOrQuery(int pageNo,
-			FirstPregnantArticle firstPregnantArticle) {
+	public Pagination findAllOrQuery(int pageNo, FirstPregnantArticle firstPregnantArticle) {
 		String hql = "from FirstPregnantArticle l where 1 = 1";
-		return firstPregnantArticleDao.findByHql(hql, pageNo,
-				PaginationConstants.PAGE_DEFAULT, null);
+		return firstPregnantArticleDao.findByHql(hql, pageNo, PaginationConstants.PAGE_DEFAULT, null);
 	}
 
-	/*
-	 * (non-Javadoc) 分页
-	 * 
-	 * @see
-	 * net.ltak.service.childinfo.ILtakChildinfoService#findAllOrQueryAll(int,
-	 * net.ltak.entity.po.LtakChildinfo)
+	/**
+	 * 分页
+	 * @see net.ltak.service.childinfo.ILtakChildinfoService#findAllOrQueryAll(int, net.ltak.entity.po.LtakChildinfo)
 	 */
-	public Pagination findAllOrQueryi(int pageNo,
-			FirstPregnantArticle firstPregnantArticle) {
+	public Pagination findAllOrQueryi(int pageNo, FirstPregnantArticle firstPregnantArticle) {
 		String hql = "from FirstPregnantArticle l where l = 1 ";
-		return firstPregnantArticleDao.findByHql(hql, pageNo,
-				PaginationConstants.PAGE_DEFAULT, null);
+		return firstPregnantArticleDao.findByHql(hql, pageNo, PaginationConstants.PAGE_DEFAULT, null);
 	}
 
 	public List<FirstPregnantArticle> list(String hosid) {
-		// TODO Auto-generated method stub
 		String hql = "from FirstPregnantArticle l where 1 = 1 ";
 		return firstPregnantArticleDao.findByListHql(hql, hosid);
+	}
 
+	@Override
+	public String findArticleCategory(String obj) {
+		obj = (StringUtils.isEmpty(obj)?CategoryConstant.FirstPregnantType.PREGNANT_TYPE_1:obj.trim());
+		String hql = "";
+		return null;
 	}
 
 	/************************** 封装get set ***************************/

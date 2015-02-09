@@ -92,18 +92,21 @@ public class FirstPregnantTypeServiceImpl extends BaseServiceImpl implements
 	 * @return Json
 	 */
 	public String findCategory() {
-		List<FirstPregnantType> list = firstPregnantTypeDao.findByListHql("from FirstPregnantType f where 1=1 and (f.parentId is null or f.parentId = '')  and f.isDelete=0");
+		List<FirstPregnantType> list = firstPregnantTypeDao.findByListHql("from FirstPregnantType f where 1=1 and (f.parentId is null or f.parentId = '')  and f.isDelete=0 order by libuPregnantType asc, paixu asc, createdDate asc");
 		List<FirstPregnantTypeVO> listVO = new ArrayList<FirstPregnantTypeVO>();
 		if(list!=null && !list.isEmpty()) {
 			for(FirstPregnantType type: list) {
 				FirstPregnantTypeVO vo = new FirstPregnantTypeVO();
 				vo.setId(type.getId());
 				vo.setName(type.getName());
-				List<FirstPregnantType> list2 = firstPregnantTypeDao.findByListHql("from FirstPregnantType f where 1=1 and f.parentId is not null and f.parentId='"+type.getId()+"' and f.isDelete=0");
+				vo.setType(type.getLibuPregnantType());
+				List<FirstPregnantType> list2 = firstPregnantTypeDao.findByListHql("from FirstPregnantType f where 1=1 and f.parentId is not null and f.parentId='"+type.getId()+"' and f.isDelete=0 order by libuPregnantType asc, paixu asc, createdDate asc");
 				for(FirstPregnantType type2: list2) {
 					FirstPregnantTypeVO vo1 = new FirstPregnantTypeVO();
 					vo1.setId(type2.getId());
 					vo1.setName(type2.getName());
+					vo1.setParentId(type.getId());
+					vo1.setType(type2.getLibuPregnantType());
 					vo.getList().add(vo1);
 				}
 				listVO.add(vo);

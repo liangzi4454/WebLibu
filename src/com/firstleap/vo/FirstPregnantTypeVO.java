@@ -12,7 +12,10 @@ public class FirstPregnantTypeVO {
 	private String id;
 	private String name;
 	private String parentId;
+	private String type;
+	
 	private List<FirstPregnantTypeVO> list = new ArrayList<FirstPregnantTypeVO>();
+	
 	public String getId() {
 		return id;
 	}
@@ -36,5 +39,11 @@ public class FirstPregnantTypeVO {
 	}
 	public void setList(List<FirstPregnantTypeVO> list) {
 		this.list = list;
+	}
+	public String getType() {
+		return type;
+	}
+	public void setType(String type) {
+		this.type = type;
 	}
 }

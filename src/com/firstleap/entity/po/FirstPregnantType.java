@@ -13,7 +13,7 @@ public class FirstPregnantType implements java.io.Serializable {
 	private String id; // 主键ID
 	private String name; // 菜单名称
 	private String parentId; // 上级ID
-	private String libuPregnantType; // 类型 1：备孕2：孕早3：孕中4：孕晚5：分娩 6：月子
+	private String libuPregnantType; // 类型--> 1：备孕、2：孕早、3：孕中、4：孕晚、5：分娩、6：月子。
 	@Deprecated
 	private FirstType firstType; // 分类表ID
 	private String isDelete; // 是否删除

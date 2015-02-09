@@ -3,12 +3,7 @@ package com.firstleap.entity.po;
 import java.util.Date;
 
 /**
- * javabean��
- * 
- * 
- * 
  * @author
- * 
  * @param <T>
  */
 @SuppressWarnings("serial")
@@ -20,6 +15,8 @@ public class FirstPregnantArticle implements java.io.Serializable {
 	private String pregnantTitle; // 标题
 	private String pregnantAbstract; // 摘要
 	private String pregnantImage; // 图片
+	private String pregnantId;
+	@Deprecated
 	private FirstPregnantType firstPregnantType; // 孕妇大类
 	private String isDelete; //
 	private Date createdDate; //
@@ -112,5 +109,13 @@ public class FirstPregnantArticle implements java.io.Serializable {
 
 	public void setUpdatedDate(Date updatedDate) {
 		this.updatedDate = updatedDate;
+	}
+
+	public String getPregnantId() {
+		return pregnantId;
+	}
+
+	public void setPregnantId(String pregnantId) {
+		this.pregnantId = pregnantId;
 	}
 }

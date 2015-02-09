@@ -16,7 +16,6 @@ public interface IFirstPregnantArticleService extends BaseService {
 	 * @return
 	 */
 	FirstPregnantArticle getByid(String id);
-
 	/**
 	 * @param pageNo
 	 * @return 分页
@@ -26,5 +25,14 @@ public interface IFirstPregnantArticleService extends BaseService {
 	public Pagination findAllOrQueryi(int pageNo, FirstPregnantArticle firstPregnantArticle);
 
 	List<FirstPregnantArticle> list(String hosid);
-
+	/**
+	 * <p>
+	 * 	根据分类类型获取与之相关的文章列表;默认类型为1;
+	 *  详细分类请查询com.firstleap.common.constant.FirstPregnantType常量类
+	 * </p>
+	 * @param obj
+	 * @return json对象
+	 * @see com.firstleap.common.constant.FirstPregnantType
+	 */
+	public String findArticleCategory(String obj);
 }
