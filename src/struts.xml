@@ -7,12 +7,11 @@
 
 	<package name="index" extends="json-default">
 		<!-- 配置拦截器栈 -->
+		<!-- 
 		<interceptors>
-			<!-- 权限验证拦截器 -->
 			<interceptor name="auth"
 				class="com.firstleap.common.struts.interceptor.AuthenticationInterceptor">
 			</interceptor>
-			<!-- 进行权限验证的拦截器栈 -->
 			<interceptor-stack name="authStack">
 				<interceptor-ref name="auth">
 					<param name="excludeMethods">
@@ -23,9 +22,8 @@
 				<interceptor-ref name="defaultStack" />
 			</interceptor-stack>
 		</interceptors>
-		<!-- 本包默认使用 经过权限验证的拦截器栈-->
 		<default-interceptor-ref name="authStack"></default-interceptor-ref>
-			
+			 -->
 		<!-- <default-action-ref name="notFound"></default-action-ref>配置全局跳转 -->
 		<global-results>
 			<result name="noLogin">/index.jsp
