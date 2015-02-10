@@ -8,6 +8,7 @@ import java.util.Map;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.apache.commons.lang.StringUtils;
 import org.apache.struts2.ServletActionContext;
 import org.apache.struts2.convention.annotation.Action;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -81,7 +82,12 @@ public class FirstPregnantArticleAction extends BaseAction {
 		try {
 			HttpServletRequest request = ServletActionContext.getRequest();
 			int size = Integer.valueOf(request.getParameter("size"));
-			String result = firstPregnantArticleService.findArticleCategoryList(size, null, null);
+			String ids = request.getParameter("ids");
+			String[] _ids = {};
+			if(StringUtils.isNotEmpty(ids) && ids.length()>0) {
+				_ids = ids.split("&");
+			}
+			String result = firstPregnantArticleService.findArticleCategoryList(size, null, _ids);
 			HttpServletResponse response =  ServletActionContext.getResponse();
 			response.setContentType("text/json;charset=UTF-8");
 			PrintWriter out = response.getWriter();

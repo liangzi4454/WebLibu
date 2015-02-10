@@ -1,22 +1,30 @@
 package com.firstleap.service.firstpregnantarticle;
 
+import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+
+import javax.annotation.Resource;
 
 import net.sf.json.JSONArray;
 
-import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.firstleap.common.constant.CategoryConstant;
-import com.firstleap.common.constant.CategoryConstant.FirstPregnantType;
 import com.firstleap.common.pagination.Pagination;
 import com.firstleap.common.pagination.PaginationConstants;
 import com.firstleap.common.service.BaseServiceImpl;
 import com.firstleap.common.util.ContextPvd;
 import com.firstleap.dao.firstpregnantarticle.IFirstPregnantArticleDao;
+import com.firstleap.dao.firstpregnanttype.IFirstPregnantTypeDao;
 import com.firstleap.entity.po.FirstPregnantArticle;
+import com.firstleap.entity.po.FirstPregnantType;
+import com.firstleap.vo.FirstPregnantArticleVO;
+import com.firstleap.vo.FirstPregnantArticleVOList;
 
 @Transactional
 @Service("FirstPregnantArticleServiceImpl")
@@ -24,11 +32,12 @@ public class FirstPregnantArticleServiceImpl extends BaseServiceImpl implements 
 
 	@Autowired
 	private IFirstPregnantArticleDao firstPregnantArticleDao;
-
 	@Autowired
 	private ContextPvd contextPvdImpl;
-
 	private FirstPregnantArticle firstPregnantArticle;
+	
+	@Resource
+	private IFirstPregnantTypeDao firstPregnantTypeDao;
 
 	/**
 	 * 根据ID查询
@@ -84,9 +93,53 @@ public class FirstPregnantArticleServiceImpl extends BaseServiceImpl implements 
 			aa += "'" + str + "',";
 		}
 		aa = aa.substring(0, aa.lastIndexOf(","));
-		String hql = "from FirstPregnantArticle f where 1=1 and f.pregnantId in ("+aa+") order by paixu asc, createdDate asc";
-		List<FirstPregnantArticle> list = firstPregnantArticleDao.findByListHql(hql);
-		return JSONArray.fromObject(list).toString();
+		List<FirstPregnantArticleVOList> voListvo = new ArrayList<FirstPregnantArticleVOList>();
+		String hql = "from FirstPregnantArticle f where 1=1 and f.pregnantId in("+aa+") order by createdDate asc, paixu asc limit 6";
+		List<FirstPregnantArticle> lista = firstPregnantArticleDao.findByListHql(hql);
+		List<FirstPregnantArticleVO> voLista = new ArrayList<FirstPregnantArticleVO>();
+		for(FirstPregnantArticle article : lista) {
+			FirstPregnantArticleVO vo = new FirstPregnantArticleVO();
+			vo.setId(article.getId());
+			vo.setTitle(article.getPregnantTitle());
+			voLista.add(vo);
+		}
+		FirstPregnantArticleVOList firstPregnantArticleVOLista = new FirstPregnantArticleVOList();
+		firstPregnantArticleVOLista.setList(voLista);
+		voListvo.add(firstPregnantArticleVOLista);
+		FirstPregnantType firstPregnantTypea = firstPregnantTypeDao.get(ids[0]);
+		Map<String, String> mapa = new HashMap<String, String>();
+		mapa.put("id", ids[0]);
+		mapa.put("name", firstPregnantTypea.getName());
+		firstPregnantArticleVOLista.setMap(mapa);
+		
+		for(String str: ids) {
+			Map<String, Object> paramMap = new HashMap<String, Object>();
+			paramMap.put("parentId", str);
+			String hql2 = "from FirstPregnantArticle f where 1=1 and f.pregnantId =:parentId order by paixu asc, createdDate asc limit "+size;
+			Pagination pagination = firstPregnantArticleDao.findByHql(hql2, 0, size, paramMap);
+			List<FirstPregnantArticle> list = pagination.getList();
+			if(list!=null && list.size()>0) {
+				FirstPregnantArticleVOList firstPregnantArticleVOList = new FirstPregnantArticleVOList();
+				List<FirstPregnantArticleVO> voList = new ArrayList<FirstPregnantArticleVO>();
+				for(int i=0; i<list.size(); i++) {
+					FirstPregnantArticle article = list.get(i);
+					if(str.equals(article.getPregnantId())) {
+						FirstPregnantArticleVO vo = new FirstPregnantArticleVO();
+						vo.setId(article.getId());
+						vo.setTitle(article.getPregnantTitle());
+						voList.add(vo);
+					}
+				}
+				FirstPregnantType firstPregnantType = firstPregnantTypeDao.get(str);
+				Map<String, String> map = new HashMap<String, String>();
+				map.put("id", str);
+				map.put("name", firstPregnantType.getName());
+				firstPregnantArticleVOList.setMap(map);
+				firstPregnantArticleVOList.setList(voList);
+				voListvo.add(firstPregnantArticleVOList);
+			}
+		}
+		return JSONArray.fromObject(voListvo).toString();
 	}
 
 	/************************** 封装get set ***************************/
