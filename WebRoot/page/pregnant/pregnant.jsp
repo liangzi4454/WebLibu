@@ -3,7 +3,6 @@
 <head>
 <%@ include file="../common/header.jsp"%>
 <script type="text/javascript">
-<script type="text/javascript">
 	pregnantType.init();
 </script>
 </script>

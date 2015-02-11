@@ -2,11 +2,15 @@ package com.firstleap.action.firstpregnantarticle;
 
 import java.io.File;
 import java.io.PrintWriter;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
+import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+import net.sf.json.JSONArray;
 
 import org.apache.commons.lang.StringUtils;
 import org.apache.struts2.ServletActionContext;
@@ -20,38 +24,30 @@ import com.firstleap.common.struts.action.BaseAction;
 import com.firstleap.entity.po.FirstLogin;
 import com.firstleap.entity.po.FirstPregnantArticle;
 import com.firstleap.entity.po.FirstPregnantType;
+import com.firstleap.entity.po.FirstType;
 import com.firstleap.service.firstpregnantarticle.IFirstPregnantArticleService;
 import com.firstleap.service.firstpregnanttype.IFirstPregnantTypeService;
+import com.firstleap.service.firsttype.IFirstTypeService;
 import com.opensymphony.xwork2.ActionContext;
 
 @SuppressWarnings("all")
 @Controller("FirstPregnantArticleAction")
 @Scope("prototype")
 public class FirstPregnantArticleAction extends BaseAction {
-
+	private String id;
+	private String pid;
 	private Pagination ltakLoginPagin;
-	private FirstLogin firstLogin;
-	private Map req;
-	private String areaid;
-	private String msgname;
-	@Autowired
-	private IFirstPregnantTypeService firstPregnantTypeService;
-
 	private FirstPregnantType firstPregnantType;
-
-	private List<FirstPregnantType> typeList;
-
-	@Autowired
-	private IFirstPregnantArticleService firstPregnantArticleService;
-
+	private List<FirstPregnantArticle> articleList;
 	private FirstPregnantArticle firstPregnantArticle;
-
-	private List<FirstPregnantArticle> tyList;
-
-	private File file;// 附件
-	private String fileFileName;// 附件名
-	private String fileContentType;// 附件类型
-
+	
+	@Resource
+	private IFirstPregnantTypeService firstPregnantTypeService;
+	@Resource
+	private IFirstPregnantArticleService firstPregnantArticleService;
+	@Resource
+	private IFirstTypeService firstTypeService;
+	
 	/**
 	 * @return
 	 * @throws Exception
@@ -59,12 +55,11 @@ public class FirstPregnantArticleAction extends BaseAction {
 	 */
 	@Action("list")
 	public String list() throws Exception {
-		ltakLoginPagin = firstPregnantArticleService.findAllOrQuery(
-				this.getPage(), firstPregnantArticle);
+		ltakLoginPagin = firstPregnantArticleService.findAllOrQuery(this.getPage(), firstPregnantArticle);
 		this.pagination = ltakLoginPagin;
-		typeList = ltakLoginPagin.getList();
+		articleList = ltakLoginPagin.getList();
 		ActionContext.getContext().getSession().put("page", this.getPage());
-		if (typeList != null) {
+		if (articleList != null) {
 			return "list";
 		}
 		return INPUT;
@@ -101,17 +96,73 @@ public class FirstPregnantArticleAction extends BaseAction {
 	@Action("findPregnantArticleDetail")
 	public String findPregnantArticleDetail() throws Exception {
 		HttpServletRequest request = ServletActionContext.getRequest();
-		String id = request.getParameter("id");
-		request.setAttribute("id", "id");
+		request.setAttribute("id", id);
+		request.setAttribute("pid", pid);
+		firstPregnantArticle = firstPregnantArticleService.getByid(id);
 		return "pregnantArticleDetail";
 	}
 	@Action("findPregnantArticleList")
 	public String findPregnantArticleList() throws Exception {
 		HttpServletRequest request = ServletActionContext.getRequest();
-		String id = request.getParameter("id");
-		request.setAttribute("id", "id");
-		return "";
+		request.setAttribute("id", id);
+		request.setAttribute("pid", pid);
+		firstPregnantArticle = new FirstPregnantArticle();
+		firstPregnantArticle.setPregnantId(pid);
+		ltakLoginPagin = firstPregnantArticleService.findAllOrQuery(this.getPage(), firstPregnantArticle);
+		this.pagination = ltakLoginPagin;
+		articleList = ltakLoginPagin.getList();
+		ActionContext.getContext().getSession().put("page", this.getPage());
+		if (articleList != null) {
+			return "pregnantArticleList";
+		}
+		return INPUT;
 	}
+	@Action("findNavigation")
+	public String findNavigation() {
+		try {
+			HttpServletRequest request = ServletActionContext.getRequest();
+			HttpServletResponse response = ServletActionContext.getResponse();
+			String id = request.getParameter("id");
+			String pId = request.getParameter("pid");
+			ArrayList<String> list = new ArrayList<String>();
+			firstPregnantType = firstPregnantTypeService.getByid(pId);
+			String thirdName = firstPregnantType.getName();
+			pId = firstPregnantType.getParentId();
+			firstPregnantType = firstPregnantTypeService.getByid(pId);
+			String secondName = firstPregnantType.getName();
+			pId = firstPregnantType.getTypeId();
+			FirstType firstType = firstTypeService.getByid(pId);
+			String firstName = firstType.getName();
+			list.add(firstName);
+			list.add(secondName);
+			list.add(thirdName);
+			JSONArray json = JSONArray.fromObject(list);
+			response.setContentType("text/json;charset=UTF-8");
+			PrintWriter out = response.getWriter();
+			out.print(json.toString());
+			out.close();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return null;
+	}
+	
+	public String getId() {
+		return id;
+	}
+
+	public void setId(String id) {
+		this.id = id;
+	}
+	
+	public String getPid() {
+		return pid;
+	}
+
+	public void setPid(String pid) {
+		this.pid = pid;
+	}
+
 	public Pagination getLtakLoginPagin() {
 		return ltakLoginPagin;
 	}
@@ -119,72 +170,7 @@ public class FirstPregnantArticleAction extends BaseAction {
 	public void setLtakLoginPagin(Pagination ltakLoginPagin) {
 		this.ltakLoginPagin = ltakLoginPagin;
 	}
-
-	public FirstLogin getFirstLogin() {
-		return firstLogin;
-	}
-
-	public void setFirstLogin(FirstLogin firstLogin) {
-		this.firstLogin = firstLogin;
-	}
-
-	public File getFile() {
-		return file;
-	}
-
-	public void setFile(File file) {
-		this.file = file;
-	}
-
-	public String getFileFileName() {
-		return fileFileName;
-	}
-
-	public void setFileFileName(String fileFileName) {
-		this.fileFileName = fileFileName;
-	}
-
-	public String getFileContentType() {
-		return fileContentType;
-	}
-
-	public void setFileContentType(String fileContentType) {
-		this.fileContentType = fileContentType;
-	}
-
-	public Map getReq() {
-		return req;
-	}
-
-	public void setReq(Map req) {
-		this.req = req;
-	}
-
-	public String getAreaid() {
-		return areaid;
-	}
-
-	public void setAreaid(String areaid) {
-		this.areaid = areaid;
-	}
-
-	public String getMsgname() {
-		return msgname;
-	}
-
-	public void setMsgname(String msgname) {
-		this.msgname = msgname;
-	}
-
-	public IFirstPregnantTypeService getFirstPregnantTypeService() {
-		return firstPregnantTypeService;
-	}
-
-	public void setFirstPregnantTypeService(
-			IFirstPregnantTypeService firstPregnantTypeService) {
-		this.firstPregnantTypeService = firstPregnantTypeService;
-	}
-
+	
 	public FirstPregnantType getFirstPregnantType() {
 		return firstPregnantType;
 	}
@@ -192,22 +178,13 @@ public class FirstPregnantArticleAction extends BaseAction {
 	public void setFirstPregnantType(FirstPregnantType firstPregnantType) {
 		this.firstPregnantType = firstPregnantType;
 	}
-
-	public List<FirstPregnantType> getTypeList() {
-		return typeList;
+	
+	public List<FirstPregnantArticle> getArticleList() {
+		return articleList;
 	}
 
-	public void setTypeList(List<FirstPregnantType> typeList) {
-		this.typeList = typeList;
-	}
-
-	public IFirstPregnantArticleService getFirstPregnantArticleService() {
-		return firstPregnantArticleService;
-	}
-
-	public void setFirstPregnantArticleService(
-			IFirstPregnantArticleService firstPregnantArticleService) {
-		this.firstPregnantArticleService = firstPregnantArticleService;
+	public void setArticleList(List<FirstPregnantArticle> articleList) {
+		this.articleList = articleList;
 	}
 
 	public FirstPregnantArticle getFirstPregnantArticle() {
@@ -217,13 +194,5 @@ public class FirstPregnantArticleAction extends BaseAction {
 	public void setFirstPregnantArticle(
 			FirstPregnantArticle firstPregnantArticle) {
 		this.firstPregnantArticle = firstPregnantArticle;
-	}
-
-	public List<FirstPregnantArticle> getTyList() {
-		return tyList;
-	}
-
-	public void setTyList(List<FirstPregnantArticle> tyList) {
-		this.tyList = tyList;
 	}
 }

@@ -69,22 +69,16 @@
 <!--start 列表-->
     <div class="main">
     	<div class="main-l">
-        	<div class="zy-listnav">
-            	当前位置：<a href="#">孕妇健康</a>&nbsp;&gt;&nbsp;<a href="#">孕妇健康</a>&nbsp;&gt;&nbsp;孕育常识
-            </div>
+        	<div class="zy-listnav" name="navigate" id="${id}" pId="${pid}"></div>
             <div class="listshow">
             	<div class="showtop">
-                	<p class="showtitle">把BB摇来摇去 当心摇出脑震荡</p>
-                    <p class="showdate">2015-1-29 11:19:16&nbsp;&nbsp;出处：PCbaby&nbsp;&nbsp;作者：吴小熊</p>
-                    <p class="zhanyao">[摘要]&nbsp;一位刚满百天的婴儿，晚饭后哭个不停，小保姆于是抱着孩子用力摇晃，约半小时孩子倒是不哭了，脸色却变得苍白，呼吸急促，一会儿全身开始抽风。经住院急救三天，患儿才脱险。</p>
+                	<p class="showtitle">${firstPregnantArticle.pregnantTitle}</p>
+                    <p class="showdate"><s:date name="firstPregnantArticle.createdDate" format="yyyy-MM-dd HH:mm:ss" />&nbsp;&nbsp;出处：&nbsp;&nbsp;作者：</p>
+                    <p class="zhanyao">[摘要]&nbsp;${firstPregnant.pregnantAbstract}</p>
                 </div>
                 <div class="showcont">
-                	<img src="<%=basePath%>images/show.jpg" width="667" height="355">
-                    <div style="font-size:14px;">　　现实生活中，家长的一些习惯性动作会在无意中造成婴儿脑震荡。有的家长或保姆为了让孩子快点入睡，会用力摇晃摇篮、推拉婴儿车;为了让孩子高兴，把孩子抛得很高;有时带婴儿外出，让孩子躺在过于颠簸的车里;有些保姆和少数性情急躁的年轻父母为了让哭闹不休的婴儿停止哭泣，猛然抓住孩子的肩膀或上臂、胸等部位摇晃以致他的头部来回晃动;或因心情不好发怒将婴儿扔到床上或沙发上以致轻微损摔伤，这些被家长看作是很轻微的动作，都有可能使孩子的头部受到一定程度的震动，严重的还会引起脑损伤，造成颅骨骨折和脑出血而危及生命，留下严重的后遗症。医学上称为摇晃婴儿综合征。<br><br>
-
-　　据了解，本病多见于半岁内婴儿，主要症状为拒奶、频繁呕吐、嗜睡，部分患儿表现全身或四肢抽搐，严重脑损伤可因昏迷、脑水肿、呼吸衰竭而死亡，值得家长们引起高度重视。专家们分析指出，摇晃之所以引起婴儿头部损伤，与婴儿头部较大且重，颅骨较软，但颈部肌肉却软弱无力，遇到震动时，自身反射性保护机能较差等因素密切相关。<br><br>
-
-　　因此，儿科专家告诫年轻父母，在护理婴儿过程中切勿随意摇晃，以防婴儿头部损伤发生意外。</div>
+                	<img src="<%=basePath%>${firstPregnantArticle.pregnantImage}" width="667" height="355">
+                    <div style="font-size:14px;">${firstPregnantArticle.pregnantContent}</div>
                 </div>
             </div>
             <!--分页-->
@@ -199,4 +193,7 @@
         </p>
     </div>
 </body>
+<script type="text/javascript">
+	pregnantType.detail_init();
+</script>
 </html>

@@ -58,8 +58,10 @@ public class FirstPregnantArticleServiceImpl extends BaseServiceImpl implements 
 	 */
 
 	public Pagination findAllOrQuery(int pageNo, FirstPregnantArticle firstPregnantArticle) {
-		String hql = "from FirstPregnantArticle l where 1 = 1";
-		return firstPregnantArticleDao.findByHql(hql, pageNo, PaginationConstants.PAGE_DEFAULT, null);
+		String hql = "from FirstPregnantArticle l where 1 = 1 and l.pregnantId=:pregnantId";
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("pregnantId", firstPregnantArticle.getPregnantId());
+		return firstPregnantArticleDao.findByHql(hql, pageNo, PaginationConstants.PAGE_DEFAULT, map);
 	}
 
 	/**
