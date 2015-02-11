@@ -98,7 +98,20 @@ public class FirstPregnantArticleAction extends BaseAction {
 		}
 		return null;
 	}
-	
+	@Action("findPregnantArticleDetail")
+	public String findPregnantArticleDetail() throws Exception {
+		HttpServletRequest request = ServletActionContext.getRequest();
+		String id = request.getParameter("id");
+		request.setAttribute("id", "id");
+		return "pregnantArticleDetail";
+	}
+	@Action("findPregnantArticleList")
+	public String findPregnantArticleList() throws Exception {
+		HttpServletRequest request = ServletActionContext.getRequest();
+		String id = request.getParameter("id");
+		request.setAttribute("id", "id");
+		return "";
+	}
 	public Pagination getLtakLoginPagin() {
 		return ltakLoginPagin;
 	}

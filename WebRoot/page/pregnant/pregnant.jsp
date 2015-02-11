@@ -2,6 +2,11 @@
 <%@ include file="../common/top.jsp"%>
 <head>
 <%@ include file="../common/header.jsp"%>
+<script type="text/javascript">
+<script type="text/javascript">
+	pregnantType.init();
+</script>
+</script>
 <title>备孕</title>
 </head>
 <body>
