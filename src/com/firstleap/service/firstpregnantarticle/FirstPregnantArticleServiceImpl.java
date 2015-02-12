@@ -1,6 +1,5 @@
 package com.firstleap.service.firstpregnantarticle;
 
-import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -142,6 +141,15 @@ public class FirstPregnantArticleServiceImpl extends BaseServiceImpl implements 
 			}
 		}
 		return JSONArray.fromObject(voListvo).toString();
+	}
+	
+	public String findHotArticle() {
+		String hql = "FROM FirstPregnantArticle a WHERE (SELECT COUNT(*) FROM FirstPregnantArticle b WHERE b.pregnantId = a.pregnantId AND a.createdDate< b.createdDate) <1 ORDER BY paixu ASC, createdDate DESC";
+		List<FirstPregnantArticle> list = firstPregnantArticleDao.findByListHql(hql);
+		if(list.size()>9) {
+			list = list.subList(0, 9);
+		}
+		return JSONArray.fromObject(list).toString();
 	}
 
 	/************************** 封装get set ***************************/

@@ -89,26 +89,7 @@
 			</div>
 			<div class="zy-rout" style="margin-top:39px;">
 				<p class="r-title">热门排行</p>
-				<ul class="zy-rul">
-					<li><span style="background:#ff9902;">1</span><a href="#">为宝宝健康成长，爸爸妈妈们可以说是煞费苦心？</a>
-					</li>
-					<li><span style="background:#ff9902;">2</span><a href="#">孩子长期与家长分离会缺乏安全感？</a>
-					</li>
-					<li><span style="background:#ff9902;">3</span><a href="#">两个月宝宝易患那些病？</a>
-					</li>
-					<li><span>4</span><a href="#">孩子长期与家长分离会缺乏安全感？</a>
-					</li>
-					<li><span>5</span><a href="#">两个月宝宝易患那些病？</a>
-					</li>
-					<li><span>6</span><a href="#">为宝宝健康成长，爸爸妈妈们可以说是煞费苦心？</a>
-					</li>
-					<li><span>7</span><a href="#">孩子长期与家长分离会缺乏安全感？</a>
-					</li>
-					<li><span>8</span><a href="#">两个月宝宝易患那些病？</a>
-					</li>
-					<li><span>9</span><a href="#">孩子长期与家长分离会缺乏安全感？</a>
-					</li>
-				</ul>
+				<ul class="zy-rul" id="hotArticle"></ul>
 			</div>
 		</div>
 	</div>

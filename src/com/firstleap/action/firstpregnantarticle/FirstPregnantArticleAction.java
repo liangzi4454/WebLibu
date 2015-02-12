@@ -147,6 +147,20 @@ public class FirstPregnantArticleAction extends BaseAction {
 		return null;
 	}
 	
+	public String findHotArticle() throws Exception {
+		try {
+			String result = firstPregnantArticleService.findHotArticle();
+			HttpServletResponse response = ServletActionContext.getResponse();
+			response.setContentType("text/json;charset=UTF-8");
+			PrintWriter out = response.getWriter();
+			out.print(result);
+			out.close();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return null;
+	}
+	
 	public String getId() {
 		return id;
 	}

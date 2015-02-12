@@ -38,4 +38,6 @@ public interface IFirstPregnantArticleService extends BaseService {
 	 * @see com.firstleap.common.constant.FirstPregnantType
 	 */
 	public String findArticleCategoryList(int size, String id, String... ids);
+	
+	public String findHotArticle();
 }

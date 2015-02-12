@@ -90,15 +90,10 @@
 			</div>
 			<!--分页-->
 			<div class="zy_fenye" style="clear:both; padding:30px; float:left;">
-				<a href="#"><span class="l-or-r">&lt;</span>
-				</a> <a href="#"><span class="zy_page_num">1</span>
-				</a> <a href="#"><span class="zy_page_num zy_page_this">2</span>
-				</a> <a href="#"><span class="zy_page_num">3</span>
-				</a> <a href="#"><span class="zy_page_num">4</span>
-				</a> <span>...</span> <a href="#"><span class="zy_page_num">5</span>
-				</a> <a href="#"><span class="l-or-r">&gt;</span>
-				</a>
-				<div class="divclear"></div>
+				<p:page pagination="${pagination}" location="0">
+					<p:param name="id" value="${id}"></p:param>
+					<p:param name="pid" value="${pid}"></p:param>
+				</p:page>
 			</div>
 			<!--分页-->
 		</div>
@@ -159,26 +154,7 @@
 			</div>
 			<div class="zy-rout" style="margin-top:15px;">
 				<p class="r-title">热门排行</p>
-				<ul class="zy-rul">
-					<li><span style="background:#ff9902;">1</span><a href="#">为宝宝健康成长，爸爸妈妈们可以说是煞费苦心？</a>
-					</li>
-					<li><span style="background:#ff9902;">2</span><a href="#">孩子长期与家长分离会缺乏安全感？</a>
-					</li>
-					<li><span style="background:#ff9902;">3</span><a href="#">两个月宝宝易患那些病？</a>
-					</li>
-					<li><span>4</span><a href="#">孩子长期与家长分离会缺乏安全感？</a>
-					</li>
-					<li><span>5</span><a href="#">两个月宝宝易患那些病？</a>
-					</li>
-					<li><span>6</span><a href="#">为宝宝健康成长，爸爸妈妈们可以说是煞费苦心？</a>
-					</li>
-					<li><span>7</span><a href="#">孩子长期与家长分离会缺乏安全感？</a>
-					</li>
-					<li><span>8</span><a href="#">两个月宝宝易患那些病？</a>
-					</li>
-					<li><span>9</span><a href="#">孩子长期与家长分离会缺乏安全感？</a>
-					</li>
-				</ul>
+				<ul class="zy-rul" id="hotArticle"></ul>
 			</div>
 		</div>
 	</div>
