@@ -223,6 +223,6 @@
 	</div>
 </body>
 <script type="text/javascript">
-	nurseryType.detail_init();
+	pregnantType.detail_init();
 </script>
 </html>

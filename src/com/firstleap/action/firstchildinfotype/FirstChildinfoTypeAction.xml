@@ -6,17 +6,8 @@
 	<package name="com.firstleap.action.firstchildinfotype.FirstChildinfoTypeAction" extends="index" namespace="/childtype">
 		<action name="childtype_*" class="FirstChildinfoTypeAction" method="{1}">
         	<result name="input">/index.jsp</result>
-        	<result name="list">/WEB-INF/firstleap/firstchildinfotype/firstchildinfotype.jsp</result>
-        	<result name="create">/WEB-INF/firstleap/firstchildinfotype/firstchildinfotypeSave.jsp</result>
-        	<result name="save" type="redirect">/childtype/childtype_list.action</result>
-        	<result name="edit">/WEB-INF/firstleap/firstchildinfotype/firstchildinfotypeUpdate.jsp</result>
-        	<result name="update" type="redirect">/childtype/childtype_list.action</result>
-        	
-        	<result name="listi">/WEB-INF/firstleap/firstchildinfotypeto/firstchildinfotype.jsp</result>
-        	<result name="createi">/WEB-INF/firstleap/firstchildinfotypeto/firstchildinfotypeSave.jsp</result>
-        	<result name="savei" type="redirect">/childtype/childtype_listi.action</result>
+        	<result name="nurseryIndex">/page/nursery/nursery.jsp</result>
         </action>
 	</package>
-	
 </struts>
 	

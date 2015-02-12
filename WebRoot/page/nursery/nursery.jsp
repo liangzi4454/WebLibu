@@ -2,7 +2,7 @@
 <%@ include file="../common/top.jsp"%>
 <head>
 <%@ include file="../common/header.jsp"%>
-<title>孕妇健康</title>
+<title>婴幼健康</title>
 </head>
 <body>
 	<!--start top-->
@@ -10,8 +10,10 @@
 		<div class="top">
 			<div class="topwrap_l">
 				<form action="" name="loginform" class="loginform">
-					<label>用户名:&nbsp;<input type="text" class="textbox"></label>
-					<label>&nbsp;&nbsp;密码:&nbsp;<input type="password" class="textbox"></label>
+					<label>用户名:&nbsp;<input type="text" class="textbox">
+					</label> <label>&nbsp;&nbsp;密码:&nbsp;<input type="password"
+						class="textbox">
+					</label>
 					<div>
 						<input type="image" src="<%=basePath%>images/loginbtn.jpg"> &nbsp;<a
 							href="#"><img src="<%=basePath%>images/zhcbtn.jpg" width="47" height="23">
@@ -35,79 +37,14 @@
 				value="搜索">
 		</div>
 	</div>
-	<div class="navwrap">
-		<ul id="nav">
-			<li><a href="#">网站首页</a>
-			</li>
-			<li><a href="#">孕妇健康</a>
-				<ul>
-					<li><a href="#">孕检流程</a>
-					</li>
-					<li><a href="#">孕妇健康</a>
-					</li>
-				</ul></li>
-			<li><a href="#">婴幼健康</a>
-				<ul>
-					<li><a href="#">菜单三</a>
-					</li>
-					<li><a href="#">菜单三</a>
-					</li>
-					<li><a href="#">菜单三</a>
-					</li>
-				</ul></li>
-			<li><a href="#">办事指南</a>
-				<ul>
-					<li><a href="#">菜单四</a>
-					</li>
-					<li><a href="#">菜单四</a>
-					</li>
-					<li><a href="#">菜单四</a>
-					</li>
-					<li><a href="#">菜单四</a>
-					</li>
-					<li><a href="#">菜单四</a>
-					</li>
-				</ul></li>
-
-			<li><a href="#">交流平台</a>
-				<ul>
-					<li><a href="#">菜单五</a>
-					</li>
-					<li><a href="#">菜单五</a>
-					</li>
-					<li><a href="#">菜单五</a>
-					</li>
-					<li><a href="#">菜单五</a>
-					</li>
-					<li><a href="#">菜单五</a>
-					</li>
-				</ul></li>
-			<li><a href="#">专家答疑</a>
-				<ul>
-					<li><a href="#">菜单六</a>
-					</li>
-					<li><a href="#">菜单六</a>
-					</li>
-					<li><a href="#">菜单六</a>
-					</li>
-					<li><a href="#">菜单六</a>
-					</li>
-					<li><a href="#">菜单六</a>
-					</li>
-				</ul></li>
-			<li><a href="#">用户专享</a>
-			</li>
-			<li><a href="#">公司简介</a>
-			</li>
-			<li><a href="#">励步亲子计划</a>
-			</li>
-		</ul>
-	</div>
+	<!--start nav-->
+	<div class="navwrap"></div>
 	<!--end nav-->
 	<div class="infonav">
+		<img src="<%=basePath%>images/infonavL.jpg" width="2" height="39"
+			style="float:left;">
 		<div class="infonav-con">
-			<strong>育儿常识:</strong> <a href="#"><span class="infocont"
-				style="background:#ffc29d;">备孕</span>
+			<strong>育儿常识:</strong> <a href="#"><span class="infocont" style="background:#ffc29d;">备孕</span>
 			</a> <a href="#"><span class="infocont" style="background:#feacae;">怀孕</span>
 			</a> <span class="nocont" style="background:#ffe7e3;"></span> <span
 				class="nocont" style="background:#ffe7e3;"></span> <span
@@ -128,6 +65,8 @@
 			</a> <a href="#"><span class="infocont" style="background:#c8c9f5;">3周岁</span>
 			</a>
 		</div>
+		<img src="<%=basePath%>images/infonavR.jpg" width="2" height="39"
+			style="float:right;">
 	</div>
 	<!--end top-->
 	<!--start 备孕-->
@@ -262,6 +201,6 @@
 	</div>
 </body>
 <script type="text/javascript">
-	pregnantType.init();
+	nurseryType.init();
 </script>
 </html>

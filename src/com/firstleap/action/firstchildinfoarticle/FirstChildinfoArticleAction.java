@@ -1,52 +1,51 @@
 package com.firstleap.action.firstchildinfoarticle;
 
-import java.io.File;
+import java.io.PrintWriter;
+import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 
+import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+import net.sf.json.JSONArray;
+
+import org.apache.commons.lang.StringUtils;
+import org.apache.struts2.ServletActionContext;
 import org.apache.struts2.convention.annotation.Action;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
 
 import com.firstleap.common.pagination.Pagination;
 import com.firstleap.common.struts.action.BaseAction;
-import com.firstleap.common.util.Constant;
 import com.firstleap.entity.po.FirstChildinfoArticle;
 import com.firstleap.entity.po.FirstChildinfoType;
 import com.firstleap.entity.po.FirstLogin;
+import com.firstleap.entity.po.FirstType;
 import com.firstleap.service.firstchildinfoarticle.IFirstChildinfoArticleService;
 import com.firstleap.service.firstchildinfotype.IFirstChildinfoTypeService;
+import com.firstleap.service.firsttype.IFirstTypeService;
 import com.opensymphony.xwork2.ActionContext;
 
 @SuppressWarnings("serial")
 @Controller("FirstChildinfoArticleAction")
 @Scope("prototype")
 public class FirstChildinfoArticleAction extends BaseAction {
-
+	private String id;
+	private String pid;
 	private Pagination ltakLoginPagin;
 	private FirstLogin firstLogin;
-	private Map req;
-	private String areaid;
-	private String msgname;
-	@Autowired
-	private IFirstChildinfoTypeService childinfoTypeService;
-
 	private FirstChildinfoType firstChildinfoType;
-
 	private List<FirstChildinfoType> typeList;
-
-	@Autowired
-	private IFirstChildinfoArticleService firstChildinfoArticleService;
-
 	private FirstChildinfoArticle firstChildinfoArticle;
-
 	private List<FirstChildinfoArticle> childList;
 
-	private File file;// 附件
-	private String fileFileName;// 附件名
-	private String fileContentType;// 附件类型
-
+	@Resource
+	private IFirstChildinfoTypeService childinfoTypeService;
+	@Resource
+	private IFirstChildinfoArticleService firstChildinfoArticleService;
+	@Resource
+	private IFirstTypeService firstTypeService;
 	/**
 	 * @return
 	 * @throws Exception
@@ -55,8 +54,7 @@ public class FirstChildinfoArticleAction extends BaseAction {
 	@SuppressWarnings("unchecked")
 	@Action("list")
 	public String list() throws Exception {
-		ltakLoginPagin = firstChildinfoArticleService.findAllOrQuery(
-				this.getPage(), firstChildinfoArticle);
+		ltakLoginPagin = firstChildinfoArticleService.findAllOrQuery(this.getPage(), firstChildinfoArticle);
 		this.pagination = ltakLoginPagin;
 		childList = ltakLoginPagin.getList();
 		ActionContext.getContext().getSession().put("page", this.getPage());
@@ -64,22 +62,101 @@ public class FirstChildinfoArticleAction extends BaseAction {
 			return "list";
 		}
 		return INPUT;
-
 	}
-
+	
 	/**
-	 * 跳到增加
-	 * 
+	 * 查询每个二级分类下给定数量在文章列表
+	 * @author LHY 2015-2-10 上午1:19:05
 	 * @return
 	 * @throws Exception
 	 */
-	@Action("create")
-	public String create() throws Exception {
-		FirstLogin ltakLogin = (FirstLogin) ActionContext.getContext()
-				.getSession().get(Constant.USER_SESSION);// ��ȡsession��¼ֵ
-		typeList = childinfoTypeService.list("2");
-
-		return "create";
+	@Action("findArticleCategoryList")
+	public String findArticleCategoryList() throws Exception {
+		try {
+			HttpServletRequest request = ServletActionContext.getRequest();
+			int size = Integer.valueOf(request.getParameter("size"));
+			String ids = request.getParameter("ids");
+			String[] _ids = {};
+			if(StringUtils.isNotEmpty(ids) && ids.length()>0) {
+				_ids = ids.split("&");
+			}
+			String result = firstChildinfoArticleService.findArticleCategoryList(size, null, _ids);
+			HttpServletResponse response =  ServletActionContext.getResponse();
+			response.setContentType("text/json;charset=UTF-8");
+			PrintWriter out = response.getWriter();
+			out.print(result);
+			out.close();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return null;
+	}
+	@Action("findChildInfoArticleDetail")
+	public String findChildInfoArticleDetail() throws Exception {
+		HttpServletRequest request = ServletActionContext.getRequest();
+		request.setAttribute("id", id);
+		request.setAttribute("pid", pid);
+		firstChildinfoArticle = firstChildinfoArticleService.getByid(id);
+		return "nurseryArticleDetail";
+	}
+	@Action("findChildInfoArticleList")
+	public String findChildInfoArticleList() throws Exception {
+		HttpServletRequest request = ServletActionContext.getRequest();
+		request.setAttribute("id", id);
+		request.setAttribute("pid", pid);
+		firstChildinfoArticle = new FirstChildinfoArticle();
+		firstChildinfoArticle.setParentId(pid);
+		ltakLoginPagin = firstChildinfoArticleService.findAllOrQuery(this.getPage(), firstChildinfoArticle);
+		this.pagination = ltakLoginPagin;
+		childList = ltakLoginPagin.getList();
+		ActionContext.getContext().getSession().put("page", this.getPage());
+		if (childList != null) {
+			return "nurseryArticleList";
+		}
+		return INPUT;
+	}
+	@Action("findNavigation")
+	public String findNavigation() {
+		try {
+			HttpServletRequest request = ServletActionContext.getRequest();
+			HttpServletResponse response = ServletActionContext.getResponse();
+			String id = request.getParameter("id");
+			String pId = request.getParameter("pid");
+			ArrayList<String> list = new ArrayList<String>();
+			firstChildinfoType = childinfoTypeService.getByid(pId);
+			String thirdName = firstChildinfoType.getName();
+			pId = firstChildinfoType.getParentId();
+			firstChildinfoType = childinfoTypeService.getByid(pId);
+			String secondName = firstChildinfoType.getName();
+			pId = firstChildinfoType.getTypeId();
+			FirstType firstType = firstTypeService.getByid(pId);
+			String firstName = firstType.getName();
+			list.add(firstName);
+			list.add(secondName);
+			list.add(thirdName);
+			JSONArray json = JSONArray.fromObject(list);
+			response.setContentType("text/json;charset=UTF-8");
+			PrintWriter out = response.getWriter();
+			out.print(json.toString());
+			out.close();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return null;
+	}
+	@Action("findHotArticle")
+	public String findHotArticle() throws Exception {
+		try {
+			String result = firstChildinfoArticleService.findHotArticle();
+			HttpServletResponse response = ServletActionContext.getResponse();
+			response.setContentType("text/json;charset=UTF-8");
+			PrintWriter out = response.getWriter();
+			out.print(result);
+			out.close();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return null;
 	}
 
 	public Pagination getLtakLoginPagin() {
@@ -98,39 +175,6 @@ public class FirstChildinfoArticleAction extends BaseAction {
 		this.firstLogin = firstLogin;
 	}
 
-	public Map getReq() {
-		return req;
-	}
-
-	public void setReq(Map req) {
-		this.req = req;
-	}
-
-	public String getAreaid() {
-		return areaid;
-	}
-
-	public void setAreaid(String areaid) {
-		this.areaid = areaid;
-	}
-
-	public String getMsgname() {
-		return msgname;
-	}
-
-	public void setMsgname(String msgname) {
-		this.msgname = msgname;
-	}
-
-	public IFirstChildinfoTypeService getChildinfoTypeService() {
-		return childinfoTypeService;
-	}
-
-	public void setChildinfoTypeService(
-			IFirstChildinfoTypeService childinfoTypeService) {
-		this.childinfoTypeService = childinfoTypeService;
-	}
-
 	public FirstChildinfoType getFirstChildinfoType() {
 		return firstChildinfoType;
 	}
@@ -147,19 +191,6 @@ public class FirstChildinfoArticleAction extends BaseAction {
 		this.typeList = typeList;
 	}
 
-	public IFirstChildinfoArticleService getFirstChildinfoArticleService() {
-		return firstChildinfoArticleService;
-	}
-
-	public void setFirstChildinfoArticleService(
-			IFirstChildinfoArticleService firstChildinfoArticleService) {
-		this.firstChildinfoArticleService = firstChildinfoArticleService;
-	}
-
-	public FirstChildinfoArticle getFirstChildinfoArticle() {
-		return firstChildinfoArticle;
-	}
-
 	public void setFirstChildinfoArticle(
 			FirstChildinfoArticle firstChildinfoArticle) {
 		this.firstChildinfoArticle = firstChildinfoArticle;
@@ -173,28 +204,19 @@ public class FirstChildinfoArticleAction extends BaseAction {
 		this.childList = childList;
 	}
 
-	public File getFile() {
-		return file;
+	public String getId() {
+		return id;
 	}
 
-	public void setFile(File file) {
-		this.file = file;
+	public void setId(String id) {
+		this.id = id;
 	}
 
-	public String getFileFileName() {
-		return fileFileName;
+	public String getPid() {
+		return pid;
 	}
 
-	public void setFileFileName(String fileFileName) {
-		this.fileFileName = fileFileName;
+	public void setPid(String pid) {
+		this.pid = pid;
 	}
-
-	public String getFileContentType() {
-		return fileContentType;
-	}
-
-	public void setFileContentType(String fileContentType) {
-		this.fileContentType = fileContentType;
-	}
-
 }

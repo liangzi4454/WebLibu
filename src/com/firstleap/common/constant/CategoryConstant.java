@@ -5,7 +5,7 @@ public class CategoryConstant {
 	 * 网站大类
 	 * @author LHY
 	 */
-	public static class FirstType {
+	public static final class FirstType {
 		/** 结婚证 */
 		public static final String MARRIAGE_CERTIFICATE = "08cc172b7a144f04862b1a95891954ea";
 		/** 关于我们 */
@@ -26,7 +26,7 @@ public class CategoryConstant {
 	 * @author LHY
 	 * 孕妇健康分类
 	 */
-	public static class FirstPregnantType {
+	public static final class FirstPregnantType {
 		/** 备孕 **/
 		public static final String PREGNANT_TYPE_1 = "1";
 		/** 营养健康 **/
@@ -40,57 +40,44 @@ public class CategoryConstant {
 		
 		/** 备早 **/
 		public static final String PREGNANT_TYPE_2 = "2";
-		/**  **/
-		public static final String PREGNANT_TYPE_201 = "201";
-		/**  **/
-		public static final String PREGNANT_TYPE_202 = "202";
-		/**  **/
-		public static final String PREGNANT_TYPE_203 = "203";
-		/**  **/
-		public static final String PREGNANT_TYPE_204 = "204";
 		
 		/** 备中 **/
 		public static final String PREGNANT_TYPE_3 = "3";
-		/** 备中 **/
-		public static final String PREGNANT_TYPE_301 = "301";
-		/** 备中 **/
-		public static final String PREGNANT_TYPE_302 = "302";
-		/** 备中 **/
-		public static final String PREGNANT_TYPE_303 = "303";
-		/** 备中 **/
-		public static final String PREGNANT_TYPE_304 = "304";
 		
 		/** 备晚 **/
 		public static final String PREGNANT_TYPE_4 = "4";
-		/**  **/
-		public static final String PREGNANT_TYPE_401 = "401";
-		/**  **/
-		public static final String PREGNANT_TYPE_402 = "402";
-		/**  **/
-		public static final String PREGNANT_TYPE_403 = "403";
-		/**  **/
-		public static final String PREGNANT_TYPE_404 = "404";
 		
 		/** 分娩 **/
 		public static final String PREGNANT_TYPE_5 = "5";
-		/** 分娩方式 **/
-		public static final String PREGNANT_TYPE_501 = "501";
-		/** 注意事项 **/
-		public static final String PREGNANT_TYPE_502 = "502";
-		/**  **/
-		public static final String PREGNANT_TYPE_503 = "503";
-		/**  **/
-		public static final String PREGNANT_TYPE_504 = "504";
 		
 		/** 月子 **/
 		public static final String PREGNANT_TYPE_6 = "6";
-		/** 日常知识 **/
-		public static final String PREGNANT_TYPE_601 = "601";
-		/** 营养健康 **/
-		public static final String PREGNANT_TYPE_602 = "602";
-		/**  **/
-		public static final String PREGNANT_TYPE_603 = "603";
-		/**  **/
-		public static final String PREGNANT_TYPE_604 = "604";
+	}
+	public static final class FirstChildinfoType {
+		/** 育儿宝典 **/
+		public static final String CHILDINFO_TYPE_1 = "1";
+		/** 新生儿 **/
+		public static final String CHILDINFO_TYPE_101 = "2ad140e9ffe04c51b1dd4e28d2689f03";
+		/** 0-1岁 **/
+		public static final String CHILDINFO_TYPE_102 = "0c3de9fe9c014c65b1cb8c90846dcd00";
+		/** 1-2岁  **/
+		public static final String CHILDINFO_TYPE_103 = "b4c49beda09a41c48da0b84243c33174";
+		/** 2-3岁 **/
+		public static final String CHILDINFO_TYPE_104 = "9c8f3f32b35b44bc9c435a320c69f94a";
+		
+		/** 备早 **/
+		public static final String CHILDINFO_TYPE_2 = "2";
+		
+		/** 备中 **/
+		public static final String CHILDINFO_TYPE_3 = "3";
+		
+		/** 备晚 **/
+		public static final String CHILDINFO_TYPE_4 = "4";
+		
+		/** 分娩 **/
+		public static final String CHILDINFO_TYPE_5 = "5";
+		
+		/** 月子 **/
+		public static final String CHILDINFO_TYPE_6 = "6";
 	}
 }

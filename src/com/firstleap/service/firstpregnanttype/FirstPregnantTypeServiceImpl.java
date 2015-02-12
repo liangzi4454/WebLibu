@@ -3,9 +3,10 @@ package com.firstleap.service.firstpregnanttype;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.annotation.Resource;
+
 import net.sf.json.JSONArray;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -13,7 +14,6 @@ import com.firstleap.common.constant.CategoryConstant;
 import com.firstleap.common.pagination.Pagination;
 import com.firstleap.common.pagination.PaginationConstants;
 import com.firstleap.common.service.BaseServiceImpl;
-import com.firstleap.common.util.ContextPvd;
 import com.firstleap.dao.firstpregnanttype.IFirstPregnantTypeDao;
 import com.firstleap.entity.po.FirstPregnantType;
 import com.firstleap.vo.FirstPregnantTypeVO;
@@ -22,12 +22,9 @@ import com.firstleap.vo.FirstPregnantTypeVO;
 @Service("FirstPregnantTypeServiceImpl")
 public class FirstPregnantTypeServiceImpl extends BaseServiceImpl implements IFirstPregnantTypeService {
 
-	@Autowired
+	@Resource
 	private IFirstPregnantTypeDao firstPregnantTypeDao;
-
-	@Autowired
-	private ContextPvd contextPvdImpl;
-
+	
 	private FirstPregnantType firstPregnantType;
 
 	/**
@@ -42,25 +39,7 @@ public class FirstPregnantTypeServiceImpl extends BaseServiceImpl implements IFi
 		}
 		return firstPregnantType;
 	}
-
-	/**
-	 * 
-	 * @see net.ltak.service.childinfo.ILtakChildinfoService#deleteChildinfo(java.lang.String)
-	 */
-	public String deleteFirstPregnantType(String id) {
-		String message = "";
-		boolean flag = true;
-		if (!(null == id || "".equals(id))) {
-			try {
-				flag = firstPregnantTypeDao.delete(id);
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
-			message = "sccg";
-		}
-		return message;
-	}
-
+	
 	/**
 	 * 分页
 	 * @see net.ltak.service.childinfo.ILtakChildinfoService#findAllOrQueryAll(int, net.ltak.entity.po.LtakChildinfo)
@@ -113,24 +92,8 @@ public class FirstPregnantTypeServiceImpl extends BaseServiceImpl implements IFi
 		JSONArray json = JSONArray.fromObject(listVO);
 		return json.toString();
 	}
+	
 	/************************** 封装get set ***************************/
-	public IFirstPregnantTypeDao getFirstPregnantTypeDao() {
-		return firstPregnantTypeDao;
-	}
-
-	public void setFirstPregnantTypeDao(
-			IFirstPregnantTypeDao firstPregnantTypeDao) {
-		this.firstPregnantTypeDao = firstPregnantTypeDao;
-	}
-
-	public ContextPvd getContextPvdImpl() {
-		return contextPvdImpl;
-	}
-
-	public void setContextPvdImpl(ContextPvd contextPvdImpl) {
-		this.contextPvdImpl = contextPvdImpl;
-	}
-
 	public FirstPregnantType getFirstPregnantType() {
 		return firstPregnantType;
 	}

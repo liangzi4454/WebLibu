@@ -1,0 +1,827 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>首页</title>
+<link rel="stylesheet" href="css/index.css" type="text/css"/>
+<link rel="stylesheet" href="css/lrtk.css" type="text/css" />
+<script type="text/javascript" src="js/jquery/jquery-1.7.2.js"></script>
+<script type="text/javascript" src="js/koala.min.1.5.js"></script>
+<script type=text/javascript>
+	function menuFix() {
+		var sfEls = document.getElementById("nav").getElementsByTagName("li");
+		for ( var i = 0; i < sfEls.length; i++) {
+			sfEls[i].onmouseover = function() {
+				this.className += (this.className.length > 0 ? " " : "")
+						+ "sfhover";
+			}
+			sfEls[i].onMouseDown = function() {
+				this.className += (this.className.length > 0 ? " " : "")
+						+ "sfhover";
+			}
+			sfEls[i].onMouseUp = function() {
+				this.className += (this.className.length > 0 ? " " : "")
+						+ "sfhover";
+			}
+			sfEls[i].onmouseout = function() {
+				this.className = this.className.replace(new RegExp(
+						"( ?|^)sfhover\\b"),
+				"");
+			}
+		}
+	}
+	window.onload = menuFix;
+</script>
+</head>
+
+<body>
+	<!--start top-->
+	<div class="topwrap">
+		<div class="top">
+			<div class="topwrap_l">
+				<form action="" name="loginform" class="loginform">
+					<label>用户名:&nbsp;<input type="text" class="textbox">
+					</label> <label>&nbsp;&nbsp;密码:&nbsp;<input type="password"
+						class="textbox">
+					</label>
+					<div>
+						<input type="image" src="images/loginbtn.jpg"> &nbsp;<a
+							href="#"><img src="images/zhcbtn.jpg" width="47" height="23">
+						</a>
+					</div>
+				</form>
+			</div>
+			<div class="toptel">
+				<img src="images/toptel.jpg" width="281" height="23">
+			</div>
+		</div>
+	</div>
+
+	<div class="logowrap">
+		<div class="logo">
+			<img src="images/logo.jpg"> <img src="images/index_17.jpg">
+		</div>
+		<div class="search">
+			<input type="search" class="schtext" value="请输入要查找的内容"
+				onClick="value=''"> <input class="searchbtn" type="submit"
+				value="搜索">
+		</div>
+	</div>
+	<!--start nav-->
+	<div class="navwrap">
+		<ul id="nav">
+			<li><a href="#">网站首页</a>
+			</li>
+			<li><a href="#">孕妇健康</a>
+				<ul>
+					<li><a href="#">孕检流程</a>
+					</li>
+					<li><a href="#">孕妇健康</a>
+					</li>
+				</ul></li>
+			<li><a href="#">婴幼健康</a>
+				<ul>
+					<li><a href="#">菜单三</a>
+					</li>
+					<li><a href="#">菜单三</a>
+					</li>
+					<li><a href="#">菜单三</a>
+					</li>
+				</ul></li>
+			<li><a href="#">办事指南</a>
+				<ul>
+					<li><a href="#">菜单四</a>
+					</li>
+					<li><a href="#">菜单四</a>
+					</li>
+					<li><a href="#">菜单四</a>
+					</li>
+					<li><a href="#">菜单四</a>
+					</li>
+					<li><a href="#">菜单四</a>
+					</li>
+				</ul></li>
+
+			<li><a href="#">交流平台</a>
+				<ul>
+					<li><a href="#">菜单五</a>
+					</li>
+					<li><a href="#">菜单五</a>
+					</li>
+					<li><a href="#">菜单五</a>
+					</li>
+					<li><a href="#">菜单五</a>
+					</li>
+					<li><a href="#">菜单五</a>
+					</li>
+				</ul></li>
+			<li><a href="#">专家答疑</a>
+				<ul>
+					<li><a href="#">菜单六</a>
+					</li>
+					<li><a href="#">菜单六</a>
+					</li>
+					<li><a href="#">菜单六</a>
+					</li>
+					<li><a href="#">菜单六</a>
+					</li>
+					<li><a href="#">菜单六</a>
+					</li>
+				</ul></li>
+			<li><a href="#">用户专享</a>
+			</li>
+			<li><a href="#">公司简介</a>
+			</li>
+			<li><a href="#">励步亲子计划</a>
+			</li>
+		</ul>
+	</div>
+	<!--end nav-->
+	<div class="infonav">
+		<div class="infonav-con">
+			<strong>育儿常识:</strong> <a href="#"><span class="infocont"
+				style="background:#ffc29d;">备孕</span>
+			</a> <a href="#"><span class="infocont" style="background:#feacae;">怀孕</span>
+			</a> <span class="nocont" style="background:#ffe7e3;"></span> <span
+				class="nocont" style="background:#ffe7e3;"></span> <span
+				class="nocont" style="background:#ffe7e3;"></span> <span
+				class="nocont" style="background:#ffe7e3;"></span> <span
+				class="nocont" style="background:#ffe7e3;"></span> <span
+				class="nocont" style="background:#ffe7e3;"></span> <span
+				class="nocont" style="background:#ffe7e3;"></span> <span
+				class="nocont" style="background:#ffe7e3;"></span> <span
+				class="nocont" style="background:#ffe7e3;"></span> <span
+				class="nocont" style="background:#ffe7e3; margin-right:3px;"></span>
+			<a href="#"><span class="infocont" style="background:#ffd3d4;">11周-20周</span>
+			</a> <a href="#"><span class="infocont" style="background:#feacae;">21周-30周</span>
+			</a> <a href="#"><span class="infocont" style="background:#feacae;">31周-40周</span>
+			</a> <a href="#"><span class="infocont" style="background:#b8d992;">宝宝出生</span>
+			</a> <a href="#"><span class="infocont" style="background:#a1e3bf;">满月</span>
+			</a> <a href="#"><span class="infocont" style="background:#aad7f6;">周岁</span>
+			</a> <a href="#"><span class="infocont" style="background:#c8c9f5;">3周岁</span>
+			</a>
+		</div>
+	</div>
+	<!--end top-->
+	<!--start main1-->
+	<div class="main">
+		<!--start slide-->
+		<div class="side">
+			<!-- 代码 开始 -->
+			<div id="fsD1" class="focus">
+				<div id="D1pic1" class="fPic">
+					<div class="fcon" style="display: none;">
+						<a target="_blank" href="#"><img src="images/01.jpg"
+							style="opacity: 1; ">
+						</a> <span class="shadow"><a target="_blank" href="#">孩子长期与家长分离会缺乏安全感？</a>
+						</span>
+					</div>
+
+					<div class="fcon" style="display: none;">
+						<a target="_blank" href="#"><img src="images/02.jpg"
+							style="opacity: 1; ">
+						</a> <span class="shadow"><a target="_blank" href="#">怀孕期间,由于孕妇身体内环境的改变</a>
+						</span>
+					</div>
+
+					<div class="fcon" style="display: none;">
+						<a target="_blank" href="#"><img src="images/03.jpg"
+							style="opacity: 1; ">
+						</a> <span class="shadow"><a target="_blank" href="#">运动量变少孕妇身体素质下降会患上疾病</a>
+						</span>
+					</div>
+
+					<div class="fcon" style="display: none;">
+						<a target="_blank" href="#"><img src="images/04.jpg"
+							style="opacity: 1; ">
+						</a> <span class="shadow"><a target="_blank" href="#">母亲就近居住
+								女儿更易</a>
+						</span>
+					</div>
+				</div>
+				<div class="fbg">
+					<div class="D1fBt" id="D1fBt">
+						<a href="javascript:void(0)" hidefocus="true" target="_self"
+							class=""><i>1</i>
+						</a> <a href="javascript:void(0)" hidefocus="true" target="_self"
+							class=""><i>2</i>
+						</a> <a href="javascript:void(0)" hidefocus="true" target="_self"
+							class="current"><i>3</i>
+						</a> <a href="javascript:void(0)" hidefocus="true" target="_self"
+							class=""><i>4</i>
+						</a>
+					</div>
+				</div>
+				<span class="prev"></span> <span class="next"></span>
+			</div>
+			<script type="text/javascript">
+				Qfast.add('widgets', {
+					path : "js/terminator2.2.min.js",
+					type : "js",
+					requires : [ 'fx' ]
+				});
+				Qfast(false, 'widgets', function() {
+					K.tabs({
+						id : 'fsD1', //焦点图包裹id  
+						conId : "D1pic1", //** 大图域包裹id  
+						tabId : "D1fBt",
+						tabTn : "a",
+						conCn : '.fcon', //** 大图域配置class       
+						auto : 1, //自动播放 1或0
+						effect : 'fade', //效果配置
+						eType : 'click', //** 鼠标事件
+						pageBt : true,//是否有按钮切换页码
+						bns : [ '.prev', '.next' ],//** 前后按钮配置class                          
+						interval : 3000
+					//** 停顿时间  
+					})
+				})
+			</script>
+			<!-- 代码 结束 -->
+		</div>
+		<!--end slide-->
+		<div class="new">
+			<div class="topline">
+				今日头条<span>&nbsp;&nbsp;Today's Focus</span>
+			</div>
+			<dl>
+				<dt>
+					<a href="#">孕期常见疾病问题速查表</a>
+				</dt>
+				<dd>
+					怀孕期间,由于孕妇身体内环境的改变,大量进食高营养食物,再加上运动量变少,孕妇身体素质下降,难免会患上一些疾病,如孕期痔疮、肠……<a
+						href="#">[全文]</a>
+				</dd>
+			</dl>
+			<dl>
+				<dt>
+					<a href="#">孕期常见疾病问题速查表</a>
+				</dt>
+				<dd>
+					怀孕期间,由于孕妇身体内环境的改变,大量进食高营养食物,再加上运动量变少,孕妇身体素质下降,难免会患上一些疾病,如孕期痔疮、肠……<a
+						href="#">[全文]</a>
+				</dd>
+			</dl>
+			<div class="new-l">
+				<div class="new-title">
+					<span>孕妇健康</span>
+					<div class="dashline"></div>
+				</div>
+				<ul class="new-ul">
+					<li><a href="#">母亲就近居住 女儿更易</a>
+					</li>
+					<li><a href="#">母亲就近居住 女儿更易</a>
+					</li>
+					<li><a href="#">母亲就近居住 女儿更易</a>
+					</li>
+				</ul>
+			</div>
+			<div class="new-r">
+				<div class="new-title">
+					<span>婴幼健康</span>
+					<p class="dashline"></p>
+				</div>
+				<ul class="new-ul">
+					<li><a href="#">母亲就近居住 女儿更易</a>
+					</li>
+					<li><a href="#">母亲就近居住 女儿更易</a>
+					</li>
+					<li><a href="#">母亲就近居住 女儿更易</a>
+					</li>
+				</ul>
+			</div>
+		</div>
+	</div>
+	<!--end main1-->
+	<!--start main2-->
+	<div class="main-title">
+		<div class="main-titlename">
+			<img src="images/index_28.jpg" width="17" height="33"> <span>孕妇健康</span>
+		</div>
+		<div class="main-title-r">
+			<a href="#">孕检项目</a>&nbsp;|&nbsp;<a href="#">日常指导</a>
+		</div>
+	</div>
+	<div class="main">
+		<!--左侧-->
+		<div class="main-l">
+			<div class="imgnew">
+				<dl>
+					<dt>
+						<a href="#"> <img src="images/index_32.jpg" width="85"
+							height="110"><br> <span>备孕先养身准爸.</span> </a>
+					</dt>
+					<dd>
+						<p>备孕</p>
+						<li><a href="#">过了预产期还未生如何是好</a>
+						</li>
+						<li><a href="#">过了预产期还未生如何是好</a>
+						</li>
+						<li><a href="#">过了预产期还未生如何是好</a>
+						</li>
+						<li><a href="#">过了预产期还未生如何是好</a>
+						</li>
+					</dd>
+				</dl>
+				<div class="borderline"></div>
+				<dl>
+					<dt>
+						<a href="#"> <img src="images/index_32.jpg" width="85"
+							height="110"><br> <span>备孕先养身准爸.</span> </a>
+					</dt>
+					<dd>
+						<p>孕早</p>
+						<li><a href="#">过了预产期还未生如何是好</a>
+						</li>
+						<li><a href="#">过了预产期还未生如何是好</a>
+						</li>
+						<li><a href="#">过了预产期还未生如何是好</a>
+						</li>
+						<li><a href="#">过了预产期还未生如何是好</a>
+						</li>
+					</dd>
+				</dl>
+				<dl>
+					<dt>
+						<a href="#"> <img src="images/index_32.jpg" width="85"
+							height="110"><br> <span>备孕先养身准爸.</span> </a>
+					</dt>
+					<dd>
+						<p>孕中</p>
+						<li><a href="#">过了预产期还未生如何是好</a>
+						</li>
+						<li><a href="#">过了预产期还未生如何是好</a>
+						</li>
+						<li><a href="#">过了预产期还未生如何是好</a>
+						</li>
+						<li><a href="#">过了预产期还未生如何是好</a>
+						</li>
+					</dd>
+				</dl>
+				<div class="borderline"></div>
+				<dl>
+					<dt>
+						<a href="#"> <img src="images/index_32.jpg" width="85"
+							height="110"><br> <span>备孕先养身准爸.</span> </a>
+					</dt>
+					<dd>
+						<p>孕晚</p>
+						<li><a href="#">过了预产期还未生如何是好</a>
+						</li>
+						<li><a href="#">过了预产期还未生如何是好</a>
+						</li>
+						<li><a href="#">过了预产期还未生如何是好</a>
+						</li>
+						<li><a href="#">过了预产期还未生如何是好</a>
+						</li>
+					</dd>
+				</dl>
+				<dl>
+					<dt>
+						<a href="#"> <img src="images/index_32.jpg" width="85"
+							height="110"><br> <span>备孕先养身准爸.</span> </a>
+					</dt>
+					<dd>
+						<p>分娩</p>
+						<li><a href="#">过了预产期还未生如何是好</a>
+						</li>
+						<li><a href="#">过了预产期还未生如何是好</a>
+						</li>
+						<li><a href="#">过了预产期还未生如何是好</a>
+						</li>
+						<li><a href="#">过了预产期还未生如何是好</a>
+						</li>
+					</dd>
+				</dl>
+				<div class="borderline"></div>
+				<dl>
+					<dt>
+						<a href="#"> <img src="images/index_32.jpg" width="85"
+							height="110"><br> <span>备孕先养身准爸.</span> </a>
+					</dt>
+					<dd>
+						<p>月子</p>
+						<li><a href="#">过了预产期还未生如何是好</a>
+						</li>
+						<li><a href="#">过了预产期还未生如何是好</a>
+						</li>
+						<li><a href="#">过了预产期还未生如何是好</a>
+						</li>
+						<li><a href="#">过了预产期还未生如何是好</a>
+						</li>
+					</dd>
+				</dl>
+			</div>
+			<!--专家答疑-->
+			<div class="dayi">
+				<div class="dayitop">
+					<span>专家答疑</span>
+					<p></p>
+				</div>
+				<ul>
+					<li><a href="#">发烧对胎儿有影响吗？</a>
+					</li>
+					<li><a href="#">怀孕期必须进行多少次重要体检？</a>
+					</li>
+					<li><a href="#">发烧对胎儿有影响吗？</a>
+					</li>
+					<li><a href="#">怀孕期必须进行多少次重要体检？</a>
+					</li>
+					<li><a href="#">发烧对胎儿有影响吗？</a>
+					</li>
+					<li><a href="#">怀孕期必须进行多少次重要体检？</a>
+					</li>
+					<li><a href="#">发烧对胎儿有影响吗？</a>
+					</li>
+					<li><a href="#">怀孕期必须进行多少次重要体检？</a>
+					</li>
+				</ul>
+			</div>
+		</div>
+		<!--右侧-->
+		<div class="main-r">
+			<div class="main-r-out">
+				<div class="duanxin">
+					<p class="r-title">育婴短信</p>
+					<form>
+						<div class="dx-l l">
+							<input type="tel" placeholder="请输入手机号"> <input
+								type="datetime" placeholder="选择宝宝出生日期或预产期">
+						</div>
+						<input class="duanxinbtn l" type="button">
+					</form>
+				</div>
+				<div class="zhinan">
+					<div class="zhinan-top pk">本期短信孕育指南</div>
+					<p>
+						孕期生活的贴心顾问，生命健康的科学指南。倡导人口健康,提高生命质量。集权威性、专业性、服务性、娱乐性为一体，营造血脉相传的浓郁亲情和时尚健康的孕育生活理念，重点为有生育计划的家庭、孕产妇家庭以及婴幼儿家庭提供生理、心理卫生健康及优生优育知识服务。</p>
+					<div class="r-tel">
+						<span class="pk">专业客服热线：</span><img src="images/tel.jpg"
+							width="123" height="19">
+					</div>
+				</div>
+			</div>
+			<div class="mainr-tool pk">
+				<p>实用小工具</p>
+				<ul>
+					<li><a href="#"><img src="images/index_36.jpg" width="29"
+							height="27"><span>生辰八字查询</span>
+					</a>
+					</li>
+					<li><a href="#"><img src="images/index_39.jpg" width="29"
+							height="27"><span>安全期计算</span>
+					</a>
+					</li>
+					<li><a href="#"><img src="images/index_43.jpg" width="29"
+							height="27"><span>怀孕日历表</span>
+					</a>
+					</li>
+					<li><a href="#"><img src="images/index_44.jpg" width="29"
+							height="27"><span>胎儿发育图</span>
+					</a>
+					</li>
+					<li><a href="#"><img src="images/index_47.jpg" width="29"
+							height="27"><span>生男生女预测</span>
+					</a>
+					</li>
+					<li><a href="#"><img src="images/index_48.jpg" width="29"
+							height="27"><span>预产期计算器</span>
+					</a>
+					</li>
+					<li><a href="#"><img src="images/index_51.jpg" width="29"
+							height="27"><span>胎儿体重计算</span>
+					</a>
+					</li>
+					<li><a href="#"><img src="images/index_52.jpg" width="29"
+							height="27"><span>身高体重计算</span>
+					</a>
+					</li>
+					<li><a href="#"><img src="images/index_58.jpg" width="29"
+							height="27"><span>宝宝名字测试</span>
+					</a>
+					</li>
+					<li><a href="#"><img src="images/index_56.jpg" width="29"
+							height="27"><span>宝宝免费起名</span>
+					</a>
+					</li>
+				</ul>
+			</div>
+		</div>
+	</div>
+	<!--end main2-->
+	<!--start 婴幼健康-->
+	<div class="main-title" style="margin-top:30px;">
+		<div class="main-titlename">
+			<img src="images/index_62.jpg" width="27" height="27"
+				style="margin-top:5px;"> <span>婴幼健康</span>
+		</div>
+		<div class="main-title-r">
+			<a href="#">疫苗接种</a>&nbsp;|&nbsp;<a href="#">日常指导</a>&nbsp;|&nbsp;<a
+				href="#">儿童体检</a>
+		</div>
+	</div>
+	<div class="main">
+		<div class="main-l">
+			<div class="main3-title">
+				<p class="m-title">0-1岁
+				</h3>
+				<p class="m-titler">
+					<a href="#"><span>生长标准</span>
+					</a>&nbsp;|&nbsp;<a href="#"><span>日常护理</span>
+					</a>&nbsp;|&nbsp;<a href="#"><span>疾病预防</span>
+					</a>&nbsp;|&nbsp;<a href="#"><span>营养指导</span>
+					</a>&nbsp;|&nbsp;<a href="#"><span>早教游戏</span>
+					</a>
+				</p>
+			</div>
+			<div class="yy-cont">
+				<img src="images/index_68.jpg" width="85" height="104">
+				<ul>
+					<li><a href="#">孩子长期与家长分离会缺乏安全感？</a>
+					</li>
+					<li><a href="#">两个月宝宝易患那些病？</a>
+					</li>
+					<li><a href="#">孩子长期与家长分离会缺乏安全感？</a>
+					</li>
+					<li><a href="#">孩子长期与家长分离会缺乏安全感？</a>
+					</li>
+					<li><a href="#">两个月宝宝易患那些病？</a>
+					</li>
+					<li><a href="#">孩子长期与家长分离会缺乏安全感？</a>
+					</li>
+					<li><a href="#">两个月宝宝易患那些病？</a>
+					</li>
+					<li><a href="#">孩子长期与家长分离会缺乏安全感？</a>
+					</li>
+				</ul>
+			</div>
+			<div class="main3-title l">
+				<p class="m-title">1-2岁
+				</h3>
+				<p class="m-titler">
+					<a href="#"><span>生长标准</span>
+					</a>&nbsp;|&nbsp;<a href="#"><span>日常护理</span>
+					</a>&nbsp;|&nbsp;<a href="#"><span>疾病预防</span>
+					</a>&nbsp;|&nbsp;<a href="#"><span>营养指导</span>
+					</a>&nbsp;|&nbsp;<a href="#"><span>早教游戏</span>
+					</a>
+				</p>
+			</div>
+			<div class="yy-cont">
+				<img src="images/index_68.jpg" width="85" height="104">
+				<ul>
+					<li><a href="#">两个月宝宝易患那些病？</a>
+					</li>
+					<li><a href="#">孩子长期与家长分离会缺乏安全感？</a>
+					</li>
+					<li><a href="#">孩子长期与家长分离会缺乏安全感？</a>
+					</li>
+					<li><a href="#">孩子长期与家长分离会缺乏安全感？</a>
+					</li>
+					<li><a href="#">两个月宝宝易患那些病？</a>
+					</li>
+					<li><a href="#">孩子长期与家长分离会缺乏安全感？</a>
+					</li>
+					<li><a href="#">两个月宝宝易患那些病？</a>
+					</li>
+					<li><a href="#">孩子长期与家长分离会缺乏安全感？</a>
+					</li>
+				</ul>
+			</div>
+			<div class="main3-title l">
+				<p class="m-title">2-3岁
+				</h3>
+				<p class="m-titler">
+					<a href="#"><span>生长标准</span>
+					</a>&nbsp;|&nbsp;<a href="#"><span>日常护理</span>
+					</a>&nbsp;|&nbsp;<a href="#"><span>疾病预防</span>
+					</a>&nbsp;|&nbsp;<a href="#"><span>营养指导</span>
+					</a>&nbsp;|&nbsp;<a href="#"><span>早教游戏</span>
+					</a>
+				</p>
+			</div>
+			<div class="yy-cont">
+				<img src="images/index_68.jpg" width="85" height="104">
+				<ul>
+					<li><a href="#">两个月宝宝易患那些病？</a>
+					</li>
+					<li><a href="#">孩子长期与家长分离会缺乏安全感？</a>
+					</li>
+					<li><a href="#">两孩子长期与家长分离会缺乏安病？</a>
+					</li>
+					<li><a href="#">孩子长期与家长分离会缺乏安全感？</a>
+					</li>
+					<li><a href="#">两个月宝宝易患那些病？</a>
+					</li>
+					<li><a href="#">孩子长期与家长分离会缺乏安全感？</a>
+					</li>
+					<li><a href="#">两个月宝宝易患那些病？</a>
+					</li>
+					<li><a href="#">孩子长期与家长分离会缺乏安全感？</a>
+					</li>
+				</ul>
+			</div>
+			<!--专家答疑-->
+			<div class="dayi">
+				<div class="dayitop">
+					<span>专家答疑</span>
+					<p></p>
+				</div>
+				<ul>
+					<li><a href="#">发烧对胎儿有影响吗？</a>
+					</li>
+					<li><a href="#">皮疹引起的准妈妈身体发热怎么办？</a>
+					</li>
+					<li><a href="#">怀孕期必须进行多少次重要产检？</a>
+					</li>
+					<li><a href="#">怀孕期必须进行多少次重要体检？</a>
+					</li>
+					<li><a href="#">发烧对胎儿有影响吗？</a>
+					</li>
+					<li><a href="#">怀孕期必须进行多少次重要体检？</a>
+					</li>
+					<li><a href="#">发烧对胎儿有影响吗？</a>
+					</li>
+					<li><a href="#">怀孕期必须进行多少次重要体检？</a>
+					</li>
+				</ul>
+			</div>
+		</div>
+		<div class="main-r">
+			<a href="#" class="index-pic"><img src="images/index_66.jpg"
+				width="304" height="84">
+			</a> <a href="#" class="index-pic"><img src="images/index_71.jpg"
+				width="304" height="84">
+			</a>
+			<div class="main-r-out">
+				<p class="r-title">儿童体检</p>
+				<div class="r-news">
+					<a href="#"><img src="images/index_76.jpg"
+						src="images/index_76.jpg" width="77" height="87">
+					</a>
+					<dl>
+						<p>
+							<a href="#" class="pk-title">为宝宝健康 定期检查很重要</a>
+						</p>
+						<p>为宝宝健康成长，爸爸妈妈们可以说是煞费苦心。为了确保宝宝健康成长……</p>
+					</dl>
+				</div>
+				<ul class="r-newsul">
+					<li><a href="#">宝宝冬季吃多少鲜果才合适？</a>
+					</li>
+					<li><a href="#">宝宝冬季吃多少鲜果才合适？</a>
+					</li>
+					<li><a href="#">宝宝冬季吃多少鲜果才合适？</a>
+					</li>
+					<li><a href="#">宝宝成长少不了益智类玩具</a>
+					</li>
+				</ul>
+				<div style="clear:both;"></div>
+			</div>
+			<div class="main-r-out" style="margin-top:15px;">
+				<p class="r-title">疫苗接种</p>
+				<div class="r-news">
+					<a href="#"><img src="images/index_82.jpg"
+						src="images/index_76.jpg" width="77" height="87">
+					</a>
+					<dl>
+						<p>
+							<a href="#" class="pk-title">第一次带宝宝打疫苗需注意</a>
+						</p>
+						<p>新生儿出生72小时内完成卡介苗和乙肝疫苗的第一次接种,因为在医院病……</p>
+					</dl>
+				</div>
+				<ul class="r-newsul">
+					<li><a href="#">宝宝冬季吃多少鲜果才合适？</a>
+					</li>
+					<li><a href="#">宝宝成长少不了益智类玩具</a>
+					</li>
+					<li><a href="#">宝宝冬季吃多少鲜果才合适？</a>
+					</li>
+				</ul>
+				<div style="clear:both;"></div>
+			</div>
+		</div>
+	</div>
+	<!--end 婴幼健康-->
+	<!--start 用户图吧-->
+	<div class="main-title" style="margin-top:30px;">
+		<div class="main-titlename">
+			<img src="images/index_85.jpg" width="27" height="24"
+				style="margin-top:8px;"> <span>用户图吧</span>
+		</div>
+		<div class="main-title-r">
+			已有1000万父母选择【励步成长计划】，和宝宝一起成长……<a href="#" class="ml-underline pk">赶快加入&gt;&gt;</a>
+		</div>
+	</div>
+	<div class="main">
+		<div class="userpic-l l">
+			<img src="images/pic.jpg" width="300" height="260">
+			<p>专业、丰富的孕育知识短信</p>
+		</div>
+		<ul class="userpic-r r">
+			<li><a href="#"><img src="images/pic-s.jpg" width="135"
+					height="100">
+				<p>我的幸福皆因有你</p>
+			</a>
+			</li>
+			<li><a href="#"><img src="images/pic-s.jpg" width="135"
+					height="100">
+				<p>我的幸福皆因有你</p>
+			</a>
+			</li>
+			<li><a href="#"><img src="images/pic-s.jpg" width="135"
+					height="100">
+				<p>我的幸福皆因有你</p>
+			</a>
+			</li>
+			<li><a href="#"><img src="images/pic-s.jpg" width="135"
+					height="100">
+				<p>我的幸福皆因有你</p>
+			</a>
+			</li>
+			<li><a href="#"><img src="images/pic-s.jpg" width="135"
+					height="100">
+				<p>我的幸福皆因有你</p>
+			</a>
+			</li>
+			<li><a href="#"><img src="images/pic-s.jpg" width="135"
+					height="100">
+				<p>我的幸福皆因有你</p>
+			</a>
+			</li>
+			<li><a href="#"><img src="images/pic-s.jpg" width="135"
+					height="100">
+				<p>我的幸福皆因有你</p>
+			</a>
+			</li>
+			<li><a href="#"><img src="images/pic-s.jpg" width="135"
+					height="100">
+				<p>我的幸福皆因有你</p>
+			</a>
+			</li>
+		</ul>
+	</div>
+	<!--合作伙伴-->
+	<div class="link">
+		<p>合作伙伴</p>
+		<ul>
+			<li><a href="#">河北省妇幼保健院</a>
+			</li>
+			<li><a href="#">藁城市妇幼保健院</a>
+			</li>
+			<li><a href="#">石家庄市四院</a>
+			</li>
+			<li><a href="#">河北省二院</a>
+			</li>
+			<li><a href="#">石家庄白求恩医院</a>
+			</li>
+			<li><a href="#">健康百科</a>
+			</li>
+			<li><a href="#">亲子中心</a>
+			</li>
+			<li><a href="#">备孕妈妈邦</a>
+			</li>
+			<li><a href="#">搜狐母婴</a>
+			</li>
+			<li><a href="#">童装资讯</a>
+			</li>
+			<li><a href="#">石家庄白求恩医院</a>
+			</li>
+			<li><a href="#">健康百科</a>
+			</li>
+			<li><a href="#">辛集市妇幼保健院</a>
+			</li>
+			<li><a href="#">母婴知识</a>
+			</li>
+			<li><a href="#">儿科</a>
+			</li>
+			<li><a href="#">石家庄市四院</a>
+			</li>
+			<li><a href="#">河北省蕴育医院</a>
+			</li>
+		</ul>
+	</div>
+
+	<div class="state">
+		声明：本站信息仅供参考——不能作为诊断及医疗的依据，详情请谨遵医嘱或咨询师。本站不承担由此引起的法律责任。</div>
+	<div class="footernav">
+		<a href="#"><span>网站简介</span>
+		</a>&nbsp;|&nbsp;<a href="#"><span>版权声明</span>
+		</a>&nbsp;|&nbsp;<a href="#"><span>联系我们</span>
+		</a>&nbsp;|&nbsp;<a href="#"><span>客户服务</span>
+		</a>&nbsp;|&nbsp;<a href="#"><span>诚征英才</span>
+		</a>&nbsp;|&nbsp;<a href="#"><span>意见反馈</span>
+		</a>&nbsp;|&nbsp;<a href="#"><span>快速导航</span>
+		</a>&nbsp;|&nbsp;<a href="#"><span>帮助中心</span>
+		</a>
+	</div>
+	<div class="footer">
+		<p>
+			Copyright © 2015 libubaby.com Inc. All Rights Reserved. 励步宝宝 版权所有<br>
+			不良信息举报电话：0311-87654321 全国免费服务热线：40004-22332 举报邮箱：jubao@libubaobao.com<br>
+			提供医院、疾病信息在线咨询服务 未经授权请勿转载
+		</p>
+	</div>
+</body>
+</html>

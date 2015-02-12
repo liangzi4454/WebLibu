@@ -20,6 +20,9 @@ public class FirstChildinfoArticle implements java.io.Serializable {
 	private String childinfoTitle; //标题
 	private String childinfoAbstract; //摘要
 	private String childinfoImage;  //图片
+	/** 关联父类 **/
+	private String parentId;
+	@Deprecated
 	private FirstChildinfoType childinfoType; //所属儿童类型
 	private String isDelete; //是否删除
 	private Date createdDate;  //增加时间
@@ -93,11 +96,10 @@ public class FirstChildinfoArticle implements java.io.Serializable {
 	public void setUpdatedDate(Date updatedDate) {
 		this.updatedDate = updatedDate;
 	}
-	
-	
-
-	
-	
-
-	
+	public String getParentId() {
+		return parentId;
+	}
+	public void setParentId(String parentId) {
+		this.parentId = parentId;
+	}
 }

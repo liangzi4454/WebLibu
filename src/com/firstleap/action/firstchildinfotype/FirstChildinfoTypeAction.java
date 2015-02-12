@@ -1,8 +1,12 @@
 package com.firstleap.action.firstchildinfotype;
 
+import java.io.PrintWriter;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.http.HttpServletResponse;
+
+import org.apache.struts2.ServletActionContext;
 import org.apache.struts2.convention.annotation.Action;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
@@ -69,8 +73,7 @@ public class FirstChildinfoTypeAction extends BaseAction {
 	@SuppressWarnings("unchecked")
 	@Action("listi")
 	public String listi() throws Exception {
-		ltakLoginPagin = firstChildinfoTypeService.findAllOrQueryi(
-				this.getPage(), firstChildinfoType);
+		ltakLoginPagin = firstChildinfoTypeService.findAllOrQueryi(this.getPage(), firstChildinfoType);
 		this.pagination = ltakLoginPagin;
 		firstChildinfoList = ltakLoginPagin.getList();
 		ActionContext.getContext().getSession().put("page", this.getPage());
@@ -78,7 +81,37 @@ public class FirstChildinfoTypeAction extends BaseAction {
 			return "listi";
 		}
 		return INPUT;
-
+	}
+	
+	/**
+	 * 跳转到婴幼儿健康页面
+	 * @return
+	 * @throws Exception
+	 */
+	@Action("nurseryIndex")
+	public String nurseryIndex() throws Exception {
+		return "nurseryIndex";
+	}
+	
+	/**
+	 * 查询婴幼儿相关的分类
+	 * @author LHY 2015-2-8 下午4:51:01
+	 * @return
+	 * @throws Exception
+	 */
+	@Action("findCategory")
+	public String findCategory() throws Exception {
+		try {
+			String result = firstChildinfoTypeService.findCategory();
+			HttpServletResponse response =  ServletActionContext.getResponse();
+			response.setContentType("text/json;charset=UTF-8");
+			PrintWriter out = response.getWriter();
+			out.print(result);
+			out.close();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return null;
 	}
 
 	public Pagination getLtakLoginPagin() {

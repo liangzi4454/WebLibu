@@ -146,7 +146,7 @@ public class FirstPregnantArticleAction extends BaseAction {
 		}
 		return null;
 	}
-	
+	@Action("findHotArticle")
 	public String findHotArticle() throws Exception {
 		try {
 			String result = firstPregnantArticleService.findHotArticle();

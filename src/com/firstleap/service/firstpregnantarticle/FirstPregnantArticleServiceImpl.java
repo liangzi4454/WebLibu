@@ -29,12 +29,9 @@ import com.firstleap.vo.FirstPregnantArticleVOList;
 @Service("FirstPregnantArticleServiceImpl")
 public class FirstPregnantArticleServiceImpl extends BaseServiceImpl implements IFirstPregnantArticleService {
 
+	private FirstPregnantArticle firstPregnantArticle;
 	@Autowired
 	private IFirstPregnantArticleDao firstPregnantArticleDao;
-	@Autowired
-	private ContextPvd contextPvdImpl;
-	private FirstPregnantArticle firstPregnantArticle;
-	
 	@Resource
 	private IFirstPregnantTypeDao firstPregnantTypeDao;
 
@@ -161,15 +158,7 @@ public class FirstPregnantArticleServiceImpl extends BaseServiceImpl implements 
 			IFirstPregnantArticleDao firstPregnantArticleDao) {
 		this.firstPregnantArticleDao = firstPregnantArticleDao;
 	}
-
-	public ContextPvd getContextPvdImpl() {
-		return contextPvdImpl;
-	}
-
-	public void setContextPvdImpl(ContextPvd contextPvdImpl) {
-		this.contextPvdImpl = contextPvdImpl;
-	}
-
+	
 	public FirstPregnantArticle getFirstPregnantArticle() {
 		return firstPregnantArticle;
 	}

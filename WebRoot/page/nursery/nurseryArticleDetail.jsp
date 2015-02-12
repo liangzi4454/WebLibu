@@ -11,7 +11,8 @@
         	<div class="topwrap_l">
                 <form action="" name="loginform" class="loginform">
                     <label>用户名:&nbsp;<input type="text" class="textbox"></label>
-                    <label>&nbsp;&nbsp;密码:&nbsp;<input type="password" class="textbox"></label><div>
+                    <label>&nbsp;&nbsp;密码:&nbsp;<input type="password" class="textbox"></label>
+                    <div>
                     <input type="image" src="<%=basePath%>images/loginbtn.jpg">
                     &nbsp;<a href="#"><img src="<%=basePath%>images/zhcbtn.jpg" width="47" height="23"></a>
                     </div>
@@ -168,6 +169,6 @@
     </div>
 </body>
 <script type="text/javascript">
-	nurseryType.detail_init();
+	pregnantType.detail_init();
 </script>
 </html>

@@ -18,7 +18,9 @@ public class FirstChildinfoType implements java.io.Serializable {
 	private String name;  //菜单名称
 	private String parentId;   //上级ID
 	private String libuChildinfoType;  //类型  1：新生儿 2：0-1岁 3：1-2岁 3：2.3岁 
+	@Deprecated
 	private FirstType firstType; //分类表ID
+	private String typeId;
 	private String isDelete; //是否删除
 	private Date createdDate;  //增加时间
 	private Date updatedDate;  //修改时间
@@ -79,9 +81,10 @@ public class FirstChildinfoType implements java.io.Serializable {
 	public void setUpdatedDate(Date updatedDate) {
 		this.updatedDate = updatedDate;
 	}
-	
-	
-
-
-	
+	public String getTypeId() {
+		return typeId;
+	}
+	public void setTypeId(String typeId) {
+		this.typeId = typeId;
+	}
 }

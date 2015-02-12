@@ -82,7 +82,19 @@ public class FirstPregnantTypeAction extends BaseAction {
 		}
 		return INPUT;
 	}
+	
 	/**
+	 * 跳转到孕妇健康页面
+	 * @return
+	 * @throws Exception
+	 */
+	@Action("pregnentIndex")
+	public String pregnentIndex() throws Exception {
+		return "pregnentIndex";
+	}
+	
+	/**
+	 * 查询孕妇相关的分类
 	 * @author LHY 2015-2-8 下午4:51:01
 	 * @return
 	 * @throws Exception
