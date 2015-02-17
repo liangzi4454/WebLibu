@@ -26,4 +26,20 @@ public interface IFirstWebArticleService extends BaseService {
 	public Pagination findAllOrQueryi(int pageNo, FirstWebArticle firstWebArticle);
 
 	List<FirstWebArticle> list(String hosid);
+
+	/**
+	 * 婴幼儿体检
+	 * @author LHY 2015-2-16 下午6:39:39
+	 * @return
+	 * @throws Exception
+	 */
+	public String nurseryExamination(int size) throws Exception;
+	
+	/**
+	 * 疫苗防疫
+	 * @author LHY 2015-2-16 下午6:39:42
+	 * @return
+	 * @throws Exception
+	 */
+	public String vaccinePrevent(int size) throws Exception;
 }

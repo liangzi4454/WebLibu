@@ -26,6 +26,12 @@ public interface IFirstPregnantArticleService extends BaseService {
 
 	List<FirstPregnantArticle> list(String hosid);
 	/**
+	 * @author LHY 2015-2-16 上午11:48:59
+	 * @param size
+	 * @return
+	 */
+	public String list(int size);
+	/**
 	 * <p>
 	 * 	根据分类类型获取与之相关的文章列表;默认类型为1;
 	 *  详细分类请查询com.firstleap.common.constant.FirstPregnantType常量类.
@@ -40,4 +46,11 @@ public interface IFirstPregnantArticleService extends BaseService {
 	public String findArticleCategoryList(int size, String id, String... ids);
 	
 	public String findHotArticle();
+	/**
+	 * 首页查询使用
+	 * @author LHY 2015-2-16 下午1:47:46
+	 * @return
+	 * @throws Exception
+	 */
+	public String findCategoryList(String id, int size) throws Exception;
 }

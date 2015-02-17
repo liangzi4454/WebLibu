@@ -65,7 +65,28 @@ public class FirstPregnantArticleAction extends BaseAction {
 		return INPUT;
 
 	}
-	
+	/**
+	 * 根据数量查询孕妇健康的列表
+	 * @author LHY 2015-2-16 上午10:57:07
+	 * @return
+	 * @throws Exception
+	 */
+	public String findList() throws Exception {
+		try {
+			HttpServletRequest request = ServletActionContext.getRequest();
+			HttpServletResponse response = ServletActionContext.getResponse();
+			response.setContentType("text/json;charset=UTF-8");
+			String size = request.getParameter("size");
+			size = StringUtils.isEmpty(size)?"3":size;
+			String result = firstPregnantArticleService.list(Integer.valueOf(size));
+			PrintWriter out = response.getWriter();
+			out.print(result);
+			out.close();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return null;
+	}
 	/**
 	 * 查询每个二级分类下给定数量在文章列表
 	 * @author LHY 2015-2-10 上午1:19:05
@@ -151,6 +172,23 @@ public class FirstPregnantArticleAction extends BaseAction {
 		try {
 			String result = firstPregnantArticleService.findHotArticle();
 			HttpServletResponse response = ServletActionContext.getResponse();
+			response.setContentType("text/json;charset=UTF-8");
+			PrintWriter out = response.getWriter();
+			out.print(result);
+			out.close();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return null;
+	}
+	@Action("findCategoryList")
+	public String findCategoryList() throws Exception {
+		try {
+			HttpServletRequest request = ServletActionContext.getRequest();
+			HttpServletResponse response = ServletActionContext.getResponse();
+			String id = request.getParameter("id");
+			String size = request.getParameter("size");
+			String result = firstPregnantArticleService.findCategoryList(id, StringUtils.isEmpty(size)?5:Integer.valueOf(size));
 			response.setContentType("text/json;charset=UTF-8");
 			PrintWriter out = response.getWriter();
 			out.print(result);

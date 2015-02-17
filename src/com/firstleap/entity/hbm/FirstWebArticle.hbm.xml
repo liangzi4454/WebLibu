@@ -8,9 +8,12 @@
             <column name="LIBU_ID" length="32" />
             <generator class="assigned" />
         </id>
-         <many-to-one name="firstWebType" lazy="false" class="com.firstleap.entity.po.FirstWebType" fetch="select">
+        <property name="webId" type="java.lang.String">
             <column name="WEB_ID" length="32" />
-        </many-to-one>
+        </property>
+        <!-- <many-to-one name="firstWebType" lazy="false" class="com.firstleap.entity.po.FirstWebType" fetch="select">
+            <column name="WEB_ID" length="32" />
+        </many-to-one> -->
         <property name="name" type="java.lang.String">
             <column name="LIBU_NAME" length="100" />
         </property>

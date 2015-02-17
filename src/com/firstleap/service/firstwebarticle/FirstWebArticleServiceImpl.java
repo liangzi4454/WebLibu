@@ -2,6 +2,8 @@ package com.firstleap.service.firstwebarticle;
 
 import java.util.List;
 
+import net.sf.json.JSONArray;
+
 import org.apache.struts2.ServletActionContext;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -81,6 +83,31 @@ public class FirstWebArticleServiceImpl extends BaseServiceImpl implements
 		String hql = "from FirstWebArticle l where 1 = 1 ";
 		return firstWebTypeDao.findByListHql(hql, hosid);
 
+	}
+	/**
+	 * 婴幼儿体检
+	 * @author LHY 2015-2-16 下午6:39:39
+	 * @return
+	 * @throws Exception
+	 */
+	public String nurseryExamination(int size) throws Exception {
+		String hql = "from FirstWebArticle f where 1=1 and f.webId = '59df6c65c29c4f51940d802a72412357'";
+		Pagination pagination = firstWebTypeDao.findByHql(hql, 0, size, null);
+		List<FirstWebArticle> list = pagination.getList();
+		return JSONArray.fromObject(list).toString();
+	}
+	
+	/**
+	 * 疫苗防疫
+	 * @author LHY 2015-2-16 下午6:39:42
+	 * @return
+	 * @throws Exception
+	 */
+	public String vaccinePrevent(int size) throws Exception {
+		String hql = "from FirstWebArticle f where 1=1 and f.webId = 'f6eda743473e415b926f015012ae5c9f'";
+		Pagination pagination = firstWebTypeDao.findByHql(hql, 0, size, null);
+		List<FirstWebArticle> list = pagination.getList();
+		return JSONArray.fromObject(list).toString();
 	}
 
 	/************************** 封装get set ***************************/

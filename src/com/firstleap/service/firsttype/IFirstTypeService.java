@@ -22,8 +22,13 @@ public interface IFirstTypeService extends BaseService {
 	 * @return 分页
 	 */
 	public Pagination findAllOrQuery(int pageNo, FirstType firstType);
-
 	public Pagination findAllOrQueryi(int pageNo, FirstType firstType);
-
-	List<FirstType> listFirstBumen(String hosid);
+	public List<FirstType> listFirstBumen(String hosid);
+	/**
+	 * 查询顶部菜单
+	 * @author LHY 2015-2-15 上午11:44:24
+	 * @return
+	 * @throws Exception
+	 */
+	public String findIndexMenu() throws Exception;
 }

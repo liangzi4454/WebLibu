@@ -72,6 +72,12 @@ public class FirstChildinfoArticleServiceImpl extends BaseServiceImpl implements
 		return dao.findByListHql(hql, hosid);
 	}
 	
+	public String list(int size) {
+		String hql = "from FirstChildinfoArticle l where 1=1 order by createdDate desc limit 3";
+		Pagination pagination = dao.findByHql(hql, 0, size, null);
+		return JSONArray.fromObject(pagination.getList()).toString();
+	}
+
 	public String findArticleCategoryList(int size, String id, String... ids) {
 		if(size==0) {
 			return "";
@@ -146,7 +152,6 @@ public class FirstChildinfoArticleServiceImpl extends BaseServiceImpl implements
 		}
 		return JSONArray.fromObject(list).toString();
 	}
-
 	/************************** 封装get set ***************************/
 	
 	public FirstChildinfoArticle getChildinfoArticle() {

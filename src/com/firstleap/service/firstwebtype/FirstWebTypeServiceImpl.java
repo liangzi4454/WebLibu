@@ -83,7 +83,6 @@ public class FirstWebTypeServiceImpl extends BaseServiceImpl implements
 		return firstWebTypeDao.findByListHql(hql, hosid);
 
 	}
-
 	/************************** 封装get set ***************************/
 	public IFirstWebTypeDao getFirstWebTypeDao() {
 		return firstWebTypeDao;

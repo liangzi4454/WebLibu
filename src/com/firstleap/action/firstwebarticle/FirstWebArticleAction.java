@@ -1,9 +1,15 @@
 package com.firstleap.action.firstwebarticle;
 
 import java.io.File;
+import java.io.PrintWriter;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+import org.apache.commons.lang.StringUtils;
+import org.apache.struts2.ServletActionContext;
 import org.apache.struts2.convention.annotation.Action;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
@@ -64,6 +70,38 @@ public class FirstWebArticleAction extends BaseAction {
 		}
 		return INPUT;
 
+	}
+	
+	public String nurseryExamination() throws Exception {
+		try {
+			HttpServletRequest request = ServletActionContext.getRequest();
+			String size = request.getParameter("size");
+			String result = firstWebArticleService.nurseryExamination(StringUtils.isEmpty(size)?5:Integer.valueOf(size));
+			HttpServletResponse response = ServletActionContext.getResponse();
+			response.setContentType("text/json;charset=UTF-8");
+			PrintWriter out = response.getWriter();
+			out.print(result);
+			out.close();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return null;
+	}
+	
+	public String vaccinePrevent() throws Exception {
+		try {
+			HttpServletRequest request = ServletActionContext.getRequest();
+			String size = request.getParameter("size");
+			String result = firstWebArticleService.vaccinePrevent(StringUtils.isEmpty(size)?5:Integer.valueOf(size));
+			HttpServletResponse response = ServletActionContext.getResponse();
+			response.setContentType("text/json;charset=UTF-8");
+			PrintWriter out = response.getWriter();
+			out.print(result);
+			out.close();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return null;
 	}
 
 	public Pagination getLtakLoginPagin() {

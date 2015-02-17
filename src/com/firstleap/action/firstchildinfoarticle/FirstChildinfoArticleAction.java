@@ -91,6 +91,28 @@ public class FirstChildinfoArticleAction extends BaseAction {
 		}
 		return null;
 	}
+	/**
+	 * 根据数量查询婴幼儿健康的列表
+	 * @author LHY 2015-2-16 上午10:57:07
+	 * @return
+	 * @throws Exception
+	 */
+	public String findList() throws Exception {
+		try {
+			HttpServletRequest request = ServletActionContext.getRequest();
+			HttpServletResponse response = ServletActionContext.getResponse();
+			response.setContentType("text/json;charset=UTF-8");
+			String size = request.getParameter("size");
+			size = StringUtils.isEmpty(size)?"3":size;
+			String result = firstChildinfoArticleService.list(Integer.valueOf(size));
+			PrintWriter out = response.getWriter();
+			out.print(result);
+			out.close();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return null;
+	}
 	@Action("findChildInfoArticleDetail")
 	public String findChildInfoArticleDetail() throws Exception {
 		HttpServletRequest request = ServletActionContext.getRequest();
@@ -156,6 +178,11 @@ public class FirstChildinfoArticleAction extends BaseAction {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+		return null;
+	}
+	
+	public String vaccinePrevent() throws Exception {
+		
 		return null;
 	}
 

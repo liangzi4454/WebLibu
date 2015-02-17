@@ -9,7 +9,6 @@ import javax.annotation.Resource;
 
 import net.sf.json.JSONArray;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -17,7 +16,6 @@ import com.firstleap.common.constant.CategoryConstant;
 import com.firstleap.common.pagination.Pagination;
 import com.firstleap.common.pagination.PaginationConstants;
 import com.firstleap.common.service.BaseServiceImpl;
-import com.firstleap.common.util.ContextPvd;
 import com.firstleap.dao.firstpregnantarticle.IFirstPregnantArticleDao;
 import com.firstleap.dao.firstpregnanttype.IFirstPregnantTypeDao;
 import com.firstleap.entity.po.FirstPregnantArticle;
@@ -30,7 +28,7 @@ import com.firstleap.vo.FirstPregnantArticleVOList;
 public class FirstPregnantArticleServiceImpl extends BaseServiceImpl implements IFirstPregnantArticleService {
 
 	private FirstPregnantArticle firstPregnantArticle;
-	@Autowired
+	@Resource
 	private IFirstPregnantArticleDao firstPregnantArticleDao;
 	@Resource
 	private IFirstPregnantTypeDao firstPregnantTypeDao;
@@ -52,7 +50,6 @@ public class FirstPregnantArticleServiceImpl extends BaseServiceImpl implements 
 	 * 分页
 	 * @see net.ltak.service.childinfo.ILtakChildinfoService#findAllOrQueryAll(int, net.ltak.entity.po.LtakChildinfo)
 	 */
-
 	public Pagination findAllOrQuery(int pageNo, FirstPregnantArticle firstPregnantArticle) {
 		String hql = "from FirstPregnantArticle l where 1 = 1 and l.pregnantId=:pregnantId";
 		Map<String, Object> map = new HashMap<String, Object>();
@@ -73,6 +70,13 @@ public class FirstPregnantArticleServiceImpl extends BaseServiceImpl implements 
 		String hql = "from FirstPregnantArticle l where 1 = 1 ";
 		return firstPregnantArticleDao.findByListHql(hql, hosid);
 	}
+
+	public String list(int size) {
+		String hql = "from FirstPregnantArticle l where 1=1 order by createdDate desc limit 3";
+//		List<FirstPregnantArticle> list = firstPregnantArticleDao.findByListHql(hql);
+		Pagination pagination = firstPregnantArticleDao.findByHql(hql, 0, size, null);
+		return JSONArray.fromObject(pagination.getList()).toString();
+	}
 	
 	public String findArticleCategoryList(int size, String id, String... ids) {
 		if(size==0) {
@@ -92,8 +96,10 @@ public class FirstPregnantArticleServiceImpl extends BaseServiceImpl implements 
 		}
 		aa = aa.substring(0, aa.lastIndexOf(","));
 		List<FirstPregnantArticleVOList> voListvo = new ArrayList<FirstPregnantArticleVOList>();
-		String hql = "from FirstPregnantArticle f where 1=1 and f.pregnantId in("+aa+") order by createdDate asc, paixu asc limit 6";
-		List<FirstPregnantArticle> lista = firstPregnantArticleDao.findByListHql(hql);
+		String hql = "from FirstPregnantArticle f where 1=1 and f.pregnantId in("+aa+") order by createdDate asc, paixu asc";
+//		List<FirstPregnantArticle> lista = firstPregnantArticleDao.findByListHql(hql);
+		Pagination pagination1 = firstPregnantArticleDao.findByHql(hql, 0, size, null);
+		List<FirstPregnantArticle> lista = pagination1.getList();
 		List<FirstPregnantArticleVO> voLista = new ArrayList<FirstPregnantArticleVO>();
 		for(FirstPregnantArticle article : lista) {
 			FirstPregnantArticleVO vo = new FirstPregnantArticleVO();
@@ -148,17 +154,25 @@ public class FirstPregnantArticleServiceImpl extends BaseServiceImpl implements 
 		}
 		return JSONArray.fromObject(list).toString();
 	}
+	
+	public String findCategoryList(String id, int size) throws Exception {
+		String hql = "from FirstPregnantType f where 1=1 and f.parentId is not null and f.parentId ='"+id+"'";
+		List<FirstPregnantType> list = firstPregnantTypeDao.findByListHql(hql);
+		String aa = "";
+		for(FirstPregnantType firstPregnantType: list) {
+			aa += "'" + firstPregnantType.getId() + "',";
+		}
+		aa = aa.substring(0, aa.lastIndexOf(","));
+		List<FirstPregnantArticle> list2 = new ArrayList<FirstPregnantArticle>();
+		if(aa.length()>0) {
+			hql = "from FirstPregnantArticle f where 1=1 and f.pregnantId in ("+aa+") order by f.paixu asc, createdDate desc ";
+			Pagination pagination = firstPregnantArticleDao.findByHql(hql, 0, size, null);
+			list2 = pagination.getList();
+		}
+		return JSONArray.fromObject(list2).toString();
+	}
 
 	/************************** 封装get set ***************************/
-	public IFirstPregnantArticleDao getFirstPregnantArticleDao() {
-		return firstPregnantArticleDao;
-	}
-
-	public void setFirstPregnantArticleDao(
-			IFirstPregnantArticleDao firstPregnantArticleDao) {
-		this.firstPregnantArticleDao = firstPregnantArticleDao;
-	}
-	
 	public FirstPregnantArticle getFirstPregnantArticle() {
 		return firstPregnantArticle;
 	}

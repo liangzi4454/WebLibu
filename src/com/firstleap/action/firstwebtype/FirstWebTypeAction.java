@@ -1,8 +1,12 @@
 package com.firstleap.action.firstwebtype;
 
+import java.io.PrintWriter;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.http.HttpServletResponse;
+
+import org.apache.struts2.ServletActionContext;
 import org.apache.struts2.convention.annotation.Action;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
@@ -80,7 +84,7 @@ public class FirstWebTypeAction extends BaseAction {
 		return INPUT;
 
 	}
-
+	
 	public Pagination getLtakLoginPagin() {
 		return ltakLoginPagin;
 	}
