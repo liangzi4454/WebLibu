@@ -38,7 +38,7 @@
 		</div>
 	</div>
 	<!--start nav-->
-	<div class="navwrap"></div>
+	<div class="navwrap" id="navigation_menu_index"></div>
 	<!--end nav-->
 	<div class="infonav">
 		<img src="<%=basePath%>images/infonavL.jpg" width="2" height="39"
