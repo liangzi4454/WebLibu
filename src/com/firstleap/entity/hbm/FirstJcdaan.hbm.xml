@@ -27,7 +27,9 @@
             <column name="LIBU_PAIXU" precision="22" scale="0" />
         </property>
        	<property name="libuType" type="java.lang.String">
-            <column name="LIBU_TYPE" length="1"/>
+            <column name="LIBU_TYPE" length="1" default="1">
+            	<comment>类型:1孕妇,2婴幼儿</comment>
+            </column>
         </property>
     </class>
 </hibernate-mapping>
