@@ -2,11 +2,15 @@ package com.firstleap.action.firstwebarticle;
 
 import java.io.File;
 import java.io.PrintWriter;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
+import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+import net.sf.json.JSONArray;
 
 import org.apache.commons.lang.StringUtils;
 import org.apache.struts2.ServletActionContext;
@@ -18,8 +22,10 @@ import org.springframework.stereotype.Controller;
 import com.firstleap.common.pagination.Pagination;
 import com.firstleap.common.struts.action.BaseAction;
 import com.firstleap.entity.po.FirstLogin;
+import com.firstleap.entity.po.FirstType;
 import com.firstleap.entity.po.FirstWebArticle;
 import com.firstleap.entity.po.FirstWebType;
+import com.firstleap.service.firsttype.IFirstTypeService;
 import com.firstleap.service.firstwebarticle.IFirstWebArticleService;
 import com.firstleap.service.firstwebtype.IFirstWebTypeService;
 import com.opensymphony.xwork2.ActionContext;
@@ -43,7 +49,9 @@ public class FirstWebArticleAction extends BaseAction {
 
 	@Autowired
 	private IFirstWebArticleService firstWebArticleService;
-
+	@Resource
+	private IFirstTypeService firstTypeService;
+	
 	private FirstWebArticle firstWebArticle;
 
 	private List<FirstWebArticle> tyList;
@@ -55,13 +63,12 @@ public class FirstWebArticleAction extends BaseAction {
 	/**
 	 * @return
 	 * @throws Exception
-	 *             网站大类分页查询
+	 * 网站大类分页查询
 	 */
 	@SuppressWarnings("unchecked")
 	@Action("list")
 	public String list() throws Exception {
-		ltakLoginPagin = firstWebArticleService.findAllOrQuery(this.getPage(),
-				firstWebArticle);
+		ltakLoginPagin = firstWebArticleService.findAllOrQuery(this.getPage(), firstWebArticle);
 		this.pagination = ltakLoginPagin;
 		typeList = ltakLoginPagin.getList();
 		ActionContext.getContext().getSession().put("page", this.getPage());
@@ -72,6 +79,33 @@ public class FirstWebArticleAction extends BaseAction {
 
 	}
 	
+	/**
+	 * 今日头条
+	 * @author LHY 2015-2-16 下午2:42:33
+	 * @return
+	 * @throws Exception
+	 */
+	public String todayFocus() throws Exception {
+		try {
+			HttpServletRequest request = ServletActionContext.getRequest();
+			String size = request.getParameter("size");
+			String result = firstWebArticleService.findWebArticle(StringUtils.isEmpty(size)?2:Integer.valueOf(size), "2405e1b161b64a9591bcb64c8b5e4787");
+			HttpServletResponse response = ServletActionContext.getResponse();
+			response.setContentType("text/json;charset=UTF-8");
+			PrintWriter out = response.getWriter();
+			out.print(result);
+			out.close();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return null;
+	}
+	/**
+	 * 儿童体检
+	 * @author LHY 2015-2-16 下午2:39:49
+	 * @return
+	 * @throws Exception
+	 */
 	public String nurseryExamination() throws Exception {
 		try {
 			HttpServletRequest request = ServletActionContext.getRequest();
@@ -88,6 +122,12 @@ public class FirstWebArticleAction extends BaseAction {
 		return null;
 	}
 	
+	/**
+	 * 疫苗接种
+	 * @author LHY 2015-2-17 下午2:40:49
+	 * @return
+	 * @throws Exception
+	 */
 	public String vaccinePrevent() throws Exception {
 		try {
 			HttpServletRequest request = ServletActionContext.getRequest();
@@ -103,7 +143,45 @@ public class FirstWebArticleAction extends BaseAction {
 		}
 		return null;
 	}
-
+	
+	/**
+	 * 今日头条详情
+	 * @author LHY 2015-2-17 下午3:14:23
+	 * @return
+	 * @throws Exception
+	 */
+	public String todayFocusDetail() throws Exception {
+		try {
+			HttpServletRequest request = ServletActionContext.getRequest();
+			String id = request.getParameter("id");
+			firstWebArticle = firstWebArticleService.getByid(id);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return "todayFocusDetail";
+	}
+	
+	public String findNavigation() throws Exception {
+		try {
+			HttpServletRequest request = ServletActionContext.getRequest();
+			HttpServletResponse response = ServletActionContext.getResponse();
+			String id = request.getParameter("id");
+			String pId = request.getParameter("pid");
+			ArrayList<String> list = new ArrayList<String>();
+			firstWebType = firstWebTypeService.getByid(pId);
+			String thirdName = firstWebType.getName();
+			list.add(thirdName);
+			JSONArray json = JSONArray.fromObject(list);
+			response.setContentType("text/json;charset=UTF-8");
+			PrintWriter out = response.getWriter();
+			out.print(json.toString());
+			out.close();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return null;
+	}
+	
 	public Pagination getLtakLoginPagin() {
 		return ltakLoginPagin;
 	}

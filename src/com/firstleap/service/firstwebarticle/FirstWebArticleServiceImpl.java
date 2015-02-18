@@ -82,8 +82,12 @@ public class FirstWebArticleServiceImpl extends BaseServiceImpl implements
 		// TODO Auto-generated method stub
 		String hql = "from FirstWebArticle l where 1 = 1 ";
 		return firstWebTypeDao.findByListHql(hql, hosid);
-
 	}
+	
+	public String todayFocus() throws Exception {
+		return null;
+	}
+
 	/**
 	 * 婴幼儿体检
 	 * @author LHY 2015-2-16 下午6:39:39
@@ -105,6 +109,13 @@ public class FirstWebArticleServiceImpl extends BaseServiceImpl implements
 	 */
 	public String vaccinePrevent(int size) throws Exception {
 		String hql = "from FirstWebArticle f where 1=1 and f.webId = 'f6eda743473e415b926f015012ae5c9f'";
+		Pagination pagination = firstWebTypeDao.findByHql(hql, 0, size, null);
+		List<FirstWebArticle> list = pagination.getList();
+		return JSONArray.fromObject(list).toString();
+	}
+	
+	public String findWebArticle(int size, String id) throws Exception {
+		String hql = "from FirstWebArticle f where 1=1 and f.webId = '"+id+"'";
 		Pagination pagination = firstWebTypeDao.findByHql(hql, 0, size, null);
 		List<FirstWebArticle> list = pagination.getList();
 		return JSONArray.fromObject(list).toString();

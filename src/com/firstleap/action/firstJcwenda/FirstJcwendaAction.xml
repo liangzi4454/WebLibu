@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.1//EN"
+    "http://struts.apache.org/dtds/struts-2.1.dtd">
+<struts>
+	<package name="com.firstleap.action.firstJcwenda.FirstJcwendaAction" extends="index" namespace="/jcwenda">
+		<action name="jcwenda_*" class="FirstJcwendaAction" method="{1}">
+        </action>
+	</package>
+</struts>

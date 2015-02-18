@@ -68,12 +68,12 @@ public class FirstChildinfoArticleServiceImpl extends BaseServiceImpl implements
 	}
 
 	public List<FirstChildinfoArticle> list(String hosid) {
-		String hql = "from FirstChildinfoArticle l where 1 = 1 ";
+		String hql = "from FirstChildinfoArticle l where 1=1 and l.parentId=? order by createdDate desc";
 		return dao.findByListHql(hql, hosid);
 	}
 	
 	public String list(int size) {
-		String hql = "from FirstChildinfoArticle l where 1=1 order by createdDate desc limit 3";
+		String hql = "from FirstChildinfoArticle l where 1=1 order by createdDate desc";
 		Pagination pagination = dao.findByHql(hql, 0, size, null);
 		return JSONArray.fromObject(pagination.getList()).toString();
 	}

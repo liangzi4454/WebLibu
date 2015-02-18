@@ -35,9 +35,7 @@
         </div>
     </div>
     <!--start nav-->
-    <div class="navwrap">
-
-    </div>
+	<div class="navwrap" id="navigation_menu_index"></div>
     <!--end nav-->
     <div class="infonav">
         <img src="<%=basePath%>images/infonavL.jpg" width="2" height="39" style="float:left;">
@@ -82,11 +80,11 @@
                 </div>
             </div>
             <!--分页-->
-            <div class="show_next" style="clear:both; padding:30px;">
+            <%--<div class="show_next" style="clear:both; padding:30px;">
             	<a href="#" class="pk-title l">上一篇：自身反射性保护机能</a>
                 <a href="#" class="pk-title r">下一篇：怀孕1周营养指南</a>
             </div>
-            <!--分页-->
+            --%><!--分页-->
             <div class="show-about">
             	<h3>相关阅读</h3>
                 <ul>

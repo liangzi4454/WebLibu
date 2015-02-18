@@ -8,9 +8,12 @@
             <column name="LIBU_ID" length="32" />
             <generator class="assigned" />
         </id>
-         <many-to-one name="firstJcwenda" lazy="false" class="com.firstleap.entity.po.FirstJcwenda" fetch="select">
+        <property name="wendaId" type="java.lang.String">
             <column name="WENDAN_ID" length="32" />
-        </many-to-one>
+        </property>
+        <!-- <many-to-one name="firstJcwenda" lazy="false" class="com.firstleap.entity.po.FirstJcwenda" fetch="select">
+            <column name="WENDAN_ID" length="32" />
+        </many-to-one> -->
         <property name="name" type="java.lang.String">
             <column name="LIBU_NAME" length="100" />
         </property>
@@ -22,6 +25,9 @@
         </property>
         <property name="paixu" type="java.lang.Long">
             <column name="LIBU_PAIXU" precision="22" scale="0" />
+        </property>
+       	<property name="libuType" type="java.lang.String">
+            <column name="LIBU_TYPE" length="1"/>
         </property>
     </class>
 </hibernate-mapping>

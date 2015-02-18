@@ -6,17 +6,7 @@
 	<package name="com.firstleap.action.firsttype.FirstTypeAction" extends="index" namespace="/ftype">
 		<action name="ftype_*" class="FirstTypeAction" method="{1}">
         	<result name="input">/index.jsp</result>
-        	<result name="list">/WEB-INF/firstleap/firsttype/firsttype.jsp</result>
-        	<result name="create">/WEB-INF/firstleap/firsttype/firsttypeSave.jsp</result>
-        	<result name="save" type="redirect">/ftype/ftype_list.action</result>
-        	<result name="edit">/WEB-INF/firstleap/firsttype/firsttypeUpdate.jsp</result>
-        	<result name="update" type="redirect">/ftype/ftype_list.action</result>
-        	
-        	<result name="listi">/WEB-INF/firstleap/firsttypeto/firsttype.jsp</result>
-        	<result name="createi">/WEB-INF/firstleap/firsttypeto/firsttypeSave.jsp</result>
-        	<result name="savei" type="redirect">/ftype/ftype_listi.action</result>
+        	<result name="answerDetail">/page/answer/answerDetail.jsp</result>
         </action>
 	</package>
-	
 </struts>
-	

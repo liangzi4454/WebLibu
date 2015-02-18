@@ -4,8 +4,10 @@ import java.io.PrintWriter;
 import java.util.List;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.apache.commons.lang.StringUtils;
 import org.apache.struts2.ServletActionContext;
 import org.apache.struts2.convention.annotation.Action;
 import org.springframework.context.annotation.Scope;
@@ -13,8 +15,12 @@ import org.springframework.stereotype.Controller;
 
 import com.firstleap.common.pagination.Pagination;
 import com.firstleap.common.struts.action.BaseAction;
+import com.firstleap.entity.po.FirstJcdaan;
+import com.firstleap.entity.po.FirstJcwenda;
 import com.firstleap.entity.po.FirstLogin;
 import com.firstleap.entity.po.FirstType;
+import com.firstleap.service.firstJcdaan.IFirstJcdaanService;
+import com.firstleap.service.firstJcwenda.IFirstJcwendaService;
 import com.firstleap.service.firsttype.IFirstTypeService;
 import com.opensymphony.xwork2.ActionContext;
 
@@ -31,7 +37,54 @@ public class FirstTypeAction extends BaseAction {
 	private FirstType firstType;
 
 	private List<FirstType> typeList;
-
+	@Resource
+	private IFirstJcwendaService firstJcwendaService;
+	@Resource
+	private IFirstJcdaanService firstJcdaanService;
+	
+	private FirstJcdaan firstJcdaan;
+	/**
+	 * 专家解答
+	 * @author LHY 2015-2-16 上午10:57:07
+	 * @return
+	 * @throws Exception
+	 */
+	@Action("expertAnswerlist")
+	public String expertAnswerlist() throws Exception {
+		try {
+			HttpServletRequest request = ServletActionContext.getRequest();
+			HttpServletResponse response = ServletActionContext.getResponse();
+			response.setContentType("text/json;charset=UTF-8");
+			String size = request.getParameter("size");
+			size = StringUtils.isEmpty(size)?"8":size;
+			String result = firstJcwendaService.list(Integer.valueOf(size));
+			PrintWriter out = response.getWriter();
+			out.print(result);
+			out.close();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return null;
+	}
+	
+	/**
+	 * 专家问答详情
+	 * @author LHY 2015-2-17 下午7:10:02
+	 * @return
+	 * @throws Exception
+	 */
+	@Action("answerDetail")
+	public String answerDetail() throws Exception {
+		HttpServletRequest request = ServletActionContext.getRequest();
+		String id = request.getParameter("id");
+		List<FirstJcdaan> list = firstJcdaanService.findList(id);
+		if(list!=null && list.size()>0) {
+			firstJcdaan = list.get(0);
+		}
+		FirstJcwenda firstJcwenda = firstJcwendaService.getByid(id);
+		request.setAttribute("firstJcwenda", firstJcwenda);
+		return "answerDetail";
+	}
 	/**
 	 * @return
 	 * @throws Exception
@@ -113,5 +166,13 @@ public class FirstTypeAction extends BaseAction {
 
 	public void setTypeList(List<FirstType> typeList) {
 		this.typeList = typeList;
+	}
+
+	public FirstJcdaan getFirstJcdaan() {
+		return firstJcdaan;
+	}
+
+	public void setFirstJcdaan(FirstJcdaan firstJcdaan) {
+		this.firstJcdaan = firstJcdaan;
 	}
 }

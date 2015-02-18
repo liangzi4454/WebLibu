@@ -18,7 +18,10 @@
             <column name="UPDATE_DATE" length="7" />
         </property>
         <property name="paixu" type="java.lang.Long">
-            <column name="LIBU_PAIXU" precision="22" scale="0" />
+            <column name="LIBU_PAIXU" />
+        </property>
+        <property name="libuType" type="java.lang.String">
+            <column name="LIBU_TYPE" length="1"/>
         </property>
     </class>
 </hibernate-mapping>

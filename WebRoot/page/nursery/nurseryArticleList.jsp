@@ -121,35 +121,8 @@
 			</div>
 			<div class="main-r-out" style="margin-top:15px;">
 				<p class="r-title">儿童体检</p>
-				<div class="r-news">
-					<a href="#"><img src="images/index_76.jpg"
-						src="images/index_76.jpg" width="77" height="87">
-					</a>
-					<dl>
-						<p>
-							<a href="#" class="pk-title">为宝宝健康 定期检查很重要</a>
-						</p>
-						<p>为宝宝健康成长，爸爸妈妈们可以说是煞费苦心。为了确保宝宝健康成长……</p>
-					</dl>
-				</div>
-				<ul class="r-newsul">
-					<li><a href="#">宝宝冬季吃多少鲜果才合适？</a>
-					</li>
-					<li><a href="#">宝宝冬季吃多少鲜果才合适？</a>
-					</li>
-					<li><a href="#">宝宝冬季吃多少鲜果才合适？</a>
-					</li>
-					<li><a href="#">宝宝成长少不了益智类玩具</a>
-					</li>
-					<li><a href="#">宝宝冬季吃多少鲜果才合适？</a>
-					</li>
-					<li><a href="#">宝宝冬季吃多少鲜果才合适？</a>
-					</li>
-					<li><a href="#">宝宝冬季吃多少鲜果才合适？</a>
-					</li>
-					<li><a href="#">宝宝成长少不了益智类玩具</a>
-					</li>
-				</ul>
+				<div class="r-news" id="hotChildArticle_first"></div>
+                <ul class="r-newsul" id="hotChildArticle"></ul>
 				<div style="clear:both;"></div>
 			</div>
 			<div class="zy-rout" style="margin-top:15px;">
@@ -223,6 +196,6 @@
 	</div>
 </body>
 <script type="text/javascript">
-	pregnantType.detail_init();
+nurseryType.detail_init();
 </script>
 </html>

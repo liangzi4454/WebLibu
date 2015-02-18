@@ -66,16 +66,16 @@
 <!--start 列表-->
     <div class="main">
     	<div class="main-l">
-        	<div class="zy-listnav" name="navigate" id="${id}" pId="${pid}"></div>
+        	<div class="zy-listnav" name="navigate" id="${firstWebArticle.id}" pId="${firstWebArticle.webId}"></div>
             <div class="listshow">
             	<div class="showtop">
-                	<p class="showtitle">${firstPregnantArticle.pregnantTitle}</p>
+                	<p class="showtitle">${firstWebArticle.webTitle}</p>
                     <p class="showdate"><s:date name="firstPregnantArticle.createdDate" format="yyyy-MM-dd HH:mm:ss" />&nbsp;&nbsp;出处：&nbsp;&nbsp;作者：</p>
-                    <p class="zhanyao">[摘要]&nbsp;${firstPregnant.pregnantAbstract}</p>
+                    <p class="zhanyao">[摘要]&nbsp;${firstWebArticle.webAbstract}</p>
                 </div>
                 <div class="showcont">
-                	<img src="<%=basePath%>${firstPregnantArticle.pregnantImage}" width="667" height="355">
-                    <div style="font-size:14px;">${firstPregnantArticle.pregnantContent}</div>
+                	<img src="<%=basePath%>${firstWebArticle.webImage}" width="667" height="355">
+                    <div style="font-size:14px;">${firstWebArticle.webContent}</div>
                 </div>
             </div>
             <!--分页-->
@@ -166,6 +166,6 @@
     </div>
 </body>
 <script type="text/javascript">
-	pregnantType.detail_init();
+	todayFocus.detail_init();
 </script>
 </html>

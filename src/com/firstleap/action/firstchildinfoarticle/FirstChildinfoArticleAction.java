@@ -181,8 +181,20 @@ public class FirstChildinfoArticleAction extends BaseAction {
 		return null;
 	}
 	
-	public String vaccinePrevent() throws Exception {
-		
+	public String findArticle() throws Exception {
+		try {
+			HttpServletRequest request = ServletActionContext.getRequest();
+			String id = request.getParameter("id");
+			List<FirstChildinfoArticle> list = firstChildinfoArticleService.list(id);
+			String result = JSONArray.fromObject(list).toString();
+			HttpServletResponse response = ServletActionContext.getResponse();
+			response.setContentType("text/json;charset=UTF-8");
+			PrintWriter out = response.getWriter();
+			out.print(result);
+			out.close();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 		return null;
 	}
 

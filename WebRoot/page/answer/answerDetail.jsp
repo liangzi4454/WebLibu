@@ -69,13 +69,11 @@
         	<div class="zy-listnav" name="navigate" id="${id}" pId="${pid}"></div>
             <div class="listshow">
             	<div class="showtop">
-                	<p class="showtitle">${firstPregnantArticle.pregnantTitle}</p>
-                    <p class="showdate"><s:date name="firstPregnantArticle.createdDate" format="yyyy-MM-dd HH:mm:ss" />&nbsp;&nbsp;出处：&nbsp;&nbsp;作者：</p>
-                    <p class="zhanyao">[摘要]&nbsp;${firstPregnant.pregnantAbstract}</p>
+                	<p class="showtitle">${firstJcwenda.name}</p>
+                    <p class="showdate"><s:date name="firstJcdaan.createdDate" format="yyyy-MM-dd HH:mm:ss" /></p>
                 </div>
                 <div class="showcont">
-                	<img src="<%=basePath%>${firstPregnantArticle.pregnantImage}" width="667" height="355">
-                    <div style="font-size:14px;">${firstPregnantArticle.pregnantContent}</div>
+                    <div style="font-size:14px;">${firstJcdaan.name}</div>
                 </div>
             </div>
             <!--分页-->
@@ -166,6 +164,6 @@
     </div>
 </body>
 <script type="text/javascript">
-	pregnantType.detail_init();
+	expertAnswer.detail_init();
 </script>
 </html>
